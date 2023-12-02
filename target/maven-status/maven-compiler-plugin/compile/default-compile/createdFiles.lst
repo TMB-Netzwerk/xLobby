@@ -30,7 +30,6 @@ de\xenodev\mysql\CoinAPI.class
 de\xenodev\utils\snow\FlakesHandler.class
 de\xenodev\commands\LocationCommand.class
 de\xenodev\xLobby.class
-de\xenodev\events\DefaultChangesEvent$1.class
 de\xenodev\mysql\LotteryAPI.class
 de\xenodev\mysql\RewardAPI.class
 de\xenodev\events\main\TrailEvent.class

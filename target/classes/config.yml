@@ -4,6 +4,6 @@ Settings:
 
 MySQL:
   Host: 'localhost'
-  Database: 'Cloudserver'
-  Username: 'Cloudserver'
+  Database: 'CloudNetzwerk'
+  Username: 'CloudNetzwerk'
   Password: '[2h4U]PVaz7aH91ua]'
