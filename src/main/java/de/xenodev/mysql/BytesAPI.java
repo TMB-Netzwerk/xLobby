@@ -2,6 +2,8 @@ package de.xenodev.mysql;
 
 import de.xenodev.xLobby;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -10,34 +12,41 @@ public class BytesAPI {
 
     private static boolean playerExists(UUID uuid){
 
-        try{
-            ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Bytes WHERE UUID= '" + uuid + "'");
-            if(rs.next()){
+        try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Bytes WHERE UUID= '" + uuid + "'");
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
                 return rs.getString("UUID") != null;
             }
-            return false;
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
     }
 
     public static void createPlayer(UUID uuid){
-
-        if(!(playerExists(uuid))){
-            xLobby.getMySQL().update("INSERT INTO Bytes(UUID, BYTES) VALUES ('" + uuid + "', '0');");
+        if(!playerExists(uuid)){
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Bytes(UUID, BYTES) VALUES ('" + uuid + "', '0');");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }else{
+            createPlayer(uuid);
         }
     }
 
-
     public static Integer getBytes(UUID uuid){
-        Integer i = 0;
-
         if(playerExists(uuid)){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Bytes WHERE UUID= '" + uuid + "'");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Bytes WHERE UUID= '" + uuid + "'");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (Integer.valueOf(rs.getInt("BYTES")) == null));
-                i = rs.getInt("BYTES");
+                return rs.getInt("BYTES");
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -45,13 +54,18 @@ public class BytesAPI {
             createPlayer(uuid);
             getBytes(uuid);
         }
-
-        return i;
+        return null;
     }
 
     public static void setBytes(UUID uuid, Integer bytes){
         if(playerExists(uuid)){
-            xLobby.getMySQL().update("UPDATE Bytes SET BYTES= '" + bytes + "' WHERE UUID= '" + uuid + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Bytes SET BYTES= '" + bytes + "' WHERE UUID= '" + uuid + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createPlayer(uuid);
             setBytes(uuid, bytes);

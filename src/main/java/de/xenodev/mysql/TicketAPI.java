@@ -2,6 +2,8 @@ package de.xenodev.mysql;
 
 import de.xenodev.xLobby;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -10,34 +12,41 @@ public class TicketAPI {
 
     private static boolean playerExists(UUID uuid){
 
-        try{
-            ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Tickets WHERE UUID= '" + uuid + "'");
-            if(rs.next()){
+        try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Tickets WHERE UUID= '" + uuid + "'");
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
                 return rs.getString("UUID") != null;
             }
-            return false;
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
     }
 
     public static void createPlayer(UUID uuid){
-
-        if(!(playerExists(uuid))){
-            xLobby.getMySQL().update("INSERT INTO Tickets(UUID, TICKETS) VALUES ('" + uuid + "', '0');");
+        if(!playerExists(uuid)){
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Tickets(UUID, TICKETS) VALUES ('" + uuid + "', '0');");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }else{
+            createPlayer(uuid);
         }
     }
 
-
     public static Integer getTickets(UUID uuid){
-        Integer i = 0;
-
         if(playerExists(uuid)){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Tickets WHERE UUID= '" + uuid + "'");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Tickets WHERE UUID= '" + uuid + "'");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (Integer.valueOf(rs.getInt("TICKETS")) == null));
-                i = rs.getInt("TICKETS");
+                return rs.getInt("TICKETS");
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -45,13 +54,18 @@ public class TicketAPI {
             createPlayer(uuid);
             getTickets(uuid);
         }
-
-        return i;
+        return null;
     }
 
     public static void setTickets(UUID uuid, Integer tickets){
         if(playerExists(uuid)){
-            xLobby.getMySQL().update("UPDATE Tickets SET TICKETS= '" + tickets + "' WHERE UUID= '" + uuid + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Tickets SET TICKETS= '" + tickets + "' WHERE UUID= '" + uuid + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createPlayer(uuid);
             setTickets(uuid, tickets);

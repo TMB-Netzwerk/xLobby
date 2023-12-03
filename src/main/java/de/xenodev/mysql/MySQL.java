@@ -1,5 +1,6 @@
 package de.xenodev.mysql;
 
+import com.zaxxer.hikari.HikariDataSource;
 import de.xenodev.xLobby;
 
 import java.sql.*;
@@ -11,58 +12,47 @@ public class MySQL {
     private String database;
     private String user;
     private String password;
-    private Connection con;
+    public HikariDataSource dataSource;
 
     public MySQL(String host, String database, String user, String password){
         this.host = host;
         this.database = database;
         this.user = user;
         this.password = password;
-
-        connect();
+        initDatabaseConnectionPool();
     }
 
-    public void connect(){
-        try{
-            con = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/" + database + "?autoReconnect=true", user, password);
-        }catch(SQLException ex){
-            ex.printStackTrace();
-            xLobby.getInstance().getLogger().log(Level.SEVERE, "MySQL-Verbindung wurde abgebrochen");
-        }
+    public void initDatabaseConnectionPool() {
+        dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:mysql://" + host + ":3306/" + database);
+        dataSource.setUsername(user);
+        dataSource.setPassword(password);
     }
 
-    public void close(){
-        try{
-            if(con != null){
-                con.close();
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
+    public void closeDatabaseConnectionPool() {
+        dataSource.close();
     }
 
     public void update(String qry){
-        try{
-            Statement st = con.createStatement();
-            st.executeUpdate(qry);
-            st.close();
-        }catch(SQLException ex){
-            connect();
-            ex.printStackTrace();
+        try (Connection connection = dataSource.getConnection()){
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(qry);
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public ResultSet query(String qry){
-        ResultSet rs = null;
-
-        try{
-            Statement st = con.createStatement();
-            rs = st.executeQuery(qry);
-        }catch(SQLException ex){
-            connect();
-            ex.printStackTrace();
+        try (Connection connection = dataSource.getConnection()){
+            try (PreparedStatement statement = connection.prepareStatement(qry)) {
+                ResultSet resultSet = statement.executeQuery();
+                return resultSet;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        return rs;
     }
 }

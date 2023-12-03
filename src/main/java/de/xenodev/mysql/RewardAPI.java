@@ -2,6 +2,8 @@ package de.xenodev.mysql;
 
 import de.xenodev.xLobby;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -10,33 +12,41 @@ public class RewardAPI {
 
     private static boolean playerExists(UUID uuid){
 
-        try{
-            ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Reward WHERE UUID= '" + uuid + "'");
-            if(rs.next()){
+        try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Reward WHERE UUID= '" + uuid + "'");
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
                 return rs.getString("UUID") != null;
             }
-            return false;
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
     }
 
     public static void createPlayer(UUID uuid){
-        if(!(playerExists(uuid))){
-            xLobby.getMySQL().update("INSERT INTO Reward(UUID, TIME, STREAK) VALUES ('" + uuid + "', '0', '0');");
+        if(!playerExists(uuid)){
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Reward(UUID, TIME, STREAK) VALUES ('" + uuid + "', '0', '0');");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }else{
+            createPlayer(uuid);
         }
     }
 
-
     public static Long getTime(UUID uuid){
-        long i = 0;
-
         if(playerExists(uuid)){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Reward WHERE UUID= '" + uuid + "'");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Reward WHERE UUID= '" + uuid + "'");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (Long.valueOf(rs.getLong("TIME")) == null));
-                i = rs.getLong("TIME");
+                return rs.getLong("TIME");
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -44,14 +54,19 @@ public class RewardAPI {
             createPlayer(uuid);
             getTime(uuid);
         }
-
-        return i;
+        return null;
     }
 
     public static void setTime(UUID uuid){
         long time = System.currentTimeMillis()+86400000;
         if(playerExists(uuid)){
-            xLobby.getMySQL().update("UPDATE Reward SET TIME= '" + time + "' WHERE UUID= '" + uuid + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Reward SET TIME= '" + time + "' WHERE UUID= '" + uuid + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createPlayer(uuid);
             setTime(uuid);
@@ -59,13 +74,13 @@ public class RewardAPI {
     }
 
     public static Integer getStreak(UUID uuid){
-        Integer i = 0;
-
         if(playerExists(uuid)){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Reward WHERE UUID= '" + uuid + "'");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Reward WHERE UUID= '" + uuid + "'");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (Integer.valueOf(rs.getInt("STREAK")) == null));
-                i = rs.getInt("STREAK");
+                return rs.getInt("STREAK");
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -73,16 +88,21 @@ public class RewardAPI {
             createPlayer(uuid);
             getStreak(uuid);
         }
-
-        return i;
+        return null;
     }
 
     public static void setStreak(UUID uuid, Integer streak){
         if(playerExists(uuid)){
-            xLobby.getMySQL().update("UPDATE Reward SET STREAK= '" + streak + "' WHERE UUID= '" + uuid + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Reward SET STREAK= '" + streak + "' WHERE UUID= '" + uuid + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createPlayer(uuid);
-            setStreak(uuid, streak);
+            setTime(uuid);
         }
     }
 

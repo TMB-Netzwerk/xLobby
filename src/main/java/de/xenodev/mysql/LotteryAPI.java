@@ -2,6 +2,8 @@ package de.xenodev.mysql;
 
 import de.xenodev.xLobby;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -10,12 +12,13 @@ public class LotteryAPI {
 
     private static boolean lotteryExists(String name){
 
-        try{
-            ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Lottery WHERE NAME= '" + name + "'");
+        try (Connection connection = xLobby.getMySQL().dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Lottery WHERE NAME= '" + name + "'");
+
+            ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
                 return rs.getString("NAME") != null;
             }
-            return false;
         }catch(SQLException ex){
             ex.printStackTrace();
         }
@@ -23,20 +26,28 @@ public class LotteryAPI {
     }
 
     public static void createLottery(String name){
-        if(!(lotteryExists(name))){
-            xLobby.getMySQL().update("INSERT INTO Lottery(NAME, USES) VALUES ('" + name + "', '0');");
+        if(!lotteryExists(name)){
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Lottery(NAME, USES) VALUES ('" + name + "', '0');");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }else{
+            createLottery(name);
         }
     }
 
 
     public static Integer getLottery(String name){
-        Integer i = 0;
-
         if(lotteryExists(name)){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Lottery WHERE NAME= '" + name + "'");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Event");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (Integer.valueOf(rs.getInt("USES")) == null));
-                i = rs.getInt("USES");
+                return rs.getInt("USES");
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -44,13 +55,18 @@ public class LotteryAPI {
             createLottery(name);
             getLottery(name);
         }
-
-        return i;
+        return null;
     }
 
     public static void setLottery(String name, Integer uses){
         if(lotteryExists(name)){
-            xLobby.getMySQL().update("UPDATE Lottery SET USES= '" + uses + "' WHERE NAME= '" + name + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Lottery SET USES= '" + uses + "' WHERE NAME= '" + name + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createLottery(name);
             setLottery(name, uses);

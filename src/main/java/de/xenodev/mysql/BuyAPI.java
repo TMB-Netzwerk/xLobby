@@ -2,41 +2,51 @@ package de.xenodev.mysql;
 
 import de.xenodev.xLobby;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
 public class BuyAPI {
 
-    private static boolean playerExists(UUID uuid){
+    private static boolean playerExists(UUID uuid) {
 
-        try{
-            ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Buy WHERE UUID= '" + uuid + "'");
-            if(rs.next()){
+        try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Buy WHERE UUID= '" + uuid + "'");
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
                 return rs.getString("UUID") != null;
             }
-            return false;
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
     }
 
     public static void createPlayer(UUID uuid){
-        if(!(playerExists(uuid))){
-            xLobby.getMySQL().update("INSERT INTO Buy(UUID,enterhaken,flugstab,eggbomb,enderperl,switchbow,notetrail,hearttrail,ghosttrail,flametrail,colortrail) VALUES ('" + uuid + "', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false');");
+        if(!playerExists(uuid)){
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Buy(UUID,enterhaken,flugstab,eggbomb,enderperl,switchbow,notetrail,hearttrail,ghosttrail,flametrail,colortrail) VALUES ('" + uuid + "', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false');");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }else{
+            createPlayer(uuid);
         }
     }
 
-
     public static String getBuy(UUID uuid, String buyName){
-        String i = "";
-
         if(playerExists(uuid)){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Buy WHERE UUID= '" + uuid + "'");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Buy WHERE UUID= '" + uuid + "'");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (String.valueOf(rs.getString(buyName.toLowerCase())) == null));
-                i = rs.getString(buyName.toLowerCase());
+                return rs.getString(buyName.toLowerCase());
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -44,13 +54,18 @@ public class BuyAPI {
             createPlayer(uuid);
             getBuy(uuid, buyName);
         }
-
-        return i;
+        return null;
     }
 
     public static void setBuy(UUID uuid, String buyName, Boolean buyBool){
         if(playerExists(uuid)){
-            xLobby.getMySQL().update("UPDATE Buy SET " + buyName.toLowerCase() + "= '" + buyBool + "' WHERE UUID= '" + uuid + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Buy SET " + buyName.toLowerCase() + "= '" + buyBool + "' WHERE UUID= '" + uuid + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createPlayer(uuid);
             setBuy(uuid, buyName, buyBool);

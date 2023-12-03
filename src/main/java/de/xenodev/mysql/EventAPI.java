@@ -2,6 +2,8 @@ package de.xenodev.mysql;
 
 import de.xenodev.xLobby;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -9,33 +11,42 @@ public class EventAPI {
 
     private static boolean eventExists(){
 
-        try{
-            ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Event");
-            if(rs.next()){
+        try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Event");
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
                 return rs.getString("NAME") != null;
             }
-            return false;
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
     }
 
     public static void createEvent(){
-        if(!(eventExists())){
-            xLobby.getMySQL().update("INSERT INTO Event(NAME) VALUES ('Nothing');");
+        if(!eventExists()){
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Event(NAME) VALUES ('Nothing');");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }else{
+            createEvent();
         }
     }
 
 
     public static String getEvent(){
-        String i = null;
-
         if(eventExists()){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Event");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Event");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (String.valueOf(rs.getString("NAME")) == null));
-                i = rs.getString("NAME");
+                return rs.getString("NAME");
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -43,13 +54,18 @@ public class EventAPI {
             createEvent();
             getEvent();
         }
-
-        return i;
+        return null;
     }
 
     public static void setEvent(String name){
         if(eventExists()){
-            xLobby.getMySQL().update("UPDATE Event SET NAME= '" + name + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Event SET NAME= '" + name + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createEvent();
             setEvent(name);

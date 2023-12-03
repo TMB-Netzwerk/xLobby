@@ -29,6 +29,9 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.logging.Level;
 
 public class xLobby extends JavaPlugin {
@@ -54,16 +57,16 @@ public class xLobby extends JavaPlugin {
 
         init(Bukkit.getPluginManager());
 
-        BoardBuilder.updateScoreboard();
-        CooldownBuilder.handlePlayerCooldown();
+        //BoardBuilder.updateScoreboard();
+        //CooldownBuilder.handlePlayerCooldown();
         if(EventAPI.getEvent().equalsIgnoreCase("Christmas")) {
-            new StarterpackHandler();
+            //new StarterpackHandler();
         }
     }
 
     @Override
     public void onDisable() {
-        mySQL.close();
+        mySQL.closeDatabaseConnectionPool();
     }
 
     private void init(PluginManager pluginManager){
@@ -101,6 +104,7 @@ public class xLobby extends JavaPlugin {
         LotteryAPI.createLottery("big");
         LotteryAPI.createLottery("hyper");
         LotteryAPI.createLottery("open");
+        EventAPI.createEvent();
     }
 
     public static String getPrefix() {
@@ -117,16 +121,38 @@ public class xLobby extends JavaPlugin {
 
     private void checkMySQL(){
         mySQL = new MySQL(getConfig().getString("MySQL.Host"), getConfig().getString("MySQL.Database"), getConfig().getString("MySQL.Username"), getConfig().getString("MySQL.Password"));
-        mySQL.update("CREATE TABLE IF NOT EXISTS Time(UUID VARCHAR(100),HOURS BIGINT,MINUTES INT,SECONDS INT)");
-        mySQL.update("CREATE TABLE IF NOT EXISTS Coins(UUID VARCHAR(100),COINS BIGINT)");
-        mySQL.update("CREATE TABLE IF NOT EXISTS Lottery(NAME VARCHAR(100),USES BIGINT)");
-        mySQL.update("CREATE TABLE IF NOT EXISTS Bytes(UUID VARCHAR(100),BYTES BIGINT)");
-        mySQL.update("CREATE TABLE IF NOT EXISTS Tickets(UUID VARCHAR(100),TICKETS BIGINT)");
-        mySQL.update("CREATE TABLE IF NOT EXISTS Reward(UUID VARCHAR(100),TIME BIGINT, STREAK BIGINT)");
-        mySQL.update("CREATE TABLE IF NOT EXISTS Event(NAME VARCHAR(100))");
+        try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+            PreparedStatement preparedStatement1 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Time(UUID VARCHAR(100),HOURS BIGINT,MINUTES INT,SECONDS INT)");
+            PreparedStatement preparedStatement2 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Coins(UUID VARCHAR(100),COINS BIGINT)");
+            PreparedStatement preparedStatement3 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Lottery(NAME VARCHAR(100),USES BIGINT)");
+            PreparedStatement preparedStatement4 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Bytes(UUID VARCHAR(100),BYTES BIGINT)");
+            PreparedStatement preparedStatement5 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Tickets(UUID VARCHAR(100),TICKETS BIGINT)");
+            PreparedStatement preparedStatement6 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Reward(UUID VARCHAR(100),TIME BIGINT, STREAK BIGINT)");
+            PreparedStatement preparedStatement7 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Event(NAME VARCHAR(100))");
+            PreparedStatement preparedStatement8 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Setting(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),eggboost_self VARCHAR(5),eggboost_other VARCHAR(5),hide VARCHAR(5),snowfall VARCHAR(5), traileffect VARCHAR(5))");
+            PreparedStatement preparedStatement9 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Buy(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5))");
+            preparedStatement1.execute();
+            preparedStatement2.execute();
+            preparedStatement3.execute();
+            preparedStatement4.execute();
+            preparedStatement5.execute();
+            preparedStatement6.execute();
+            preparedStatement7.execute();
+            preparedStatement8.execute();
+            preparedStatement9.execute();
 
-        mySQL.update("CREATE TABLE IF NOT EXISTS Setting(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),eggboost_self VARCHAR(5),eggboost_other VARCHAR(5),hide VARCHAR(5),snowfall VARCHAR(5), traileffect VARCHAR(5))");
-        mySQL.update("CREATE TABLE IF NOT EXISTS Buy(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5))");
+            preparedStatement1.close();
+            preparedStatement2.close();
+            preparedStatement3.close();
+            preparedStatement4.close();
+            preparedStatement5.close();
+            preparedStatement6.close();
+            preparedStatement7.close();
+            preparedStatement8.close();
+            preparedStatement9.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
 
     private void checkParticleAPI(){

@@ -4,6 +4,6 @@ Settings:
 
 MySQL:
   Host: 'localhost'
-  Database: 'CloudNetzwerk'
-  Username: 'CloudNetzwerk'
-  Password: '[2h4U]PVaz7aH91ua]'
+  Database: 'changed_db'
+  Username: 'changed_user'
+  Password: 'changed_pw'

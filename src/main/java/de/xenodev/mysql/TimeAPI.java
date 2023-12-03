@@ -2,6 +2,8 @@ package de.xenodev.mysql;
 
 import de.xenodev.xLobby;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -10,32 +12,41 @@ public class TimeAPI {
 
     private static boolean playerExists(UUID uuid){
 
-        try{
-            ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Time WHERE UUID= '" + uuid + "'");
-            if(rs.next()){
+        try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Time WHERE UUID= '" + uuid + "'");
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
                 return rs.getString("UUID") != null;
             }
-            return false;
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
     }
 
     public static void createPlayer(UUID uuid){
-        if(!(playerExists(uuid))){
-            xLobby.getMySQL().update("INSERT INTO Time(UUID, HOURS, MINUTES, SECONDS) VALUES ('" + uuid + "', '0', '0', '0');");
+        if(!playerExists(uuid)){
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Time(UUID, HOURS, MINUTES, SECONDS) VALUES ('" + uuid + "', '0', '0', '0');");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }else{
+            createPlayer(uuid);
         }
     }
 
     public static Integer getHours(UUID uuid){
-        Integer i = 0;
-
         if(playerExists(uuid)){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Time WHERE UUID= '" + uuid + "'");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Time WHERE UUID= '" + uuid + "'");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (Integer.valueOf(rs.getInt("HOURS")) == null));
-                i = rs.getInt("HOURS");
+                return rs.getInt("HOURS");
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -43,18 +54,17 @@ public class TimeAPI {
             createPlayer(uuid);
             getHours(uuid);
         }
-
-        return i;
+        return null;
     }
 
     public static Integer getMinutes(UUID uuid){
-        Integer i = 0;
-
         if(playerExists(uuid)){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Time WHERE UUID= '" + uuid + "'");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Time WHERE UUID= '" + uuid + "'");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (Integer.valueOf(rs.getInt("MINUTES")) == null));
-                i = rs.getInt("MINUTES");
+                return rs.getInt("MINUTES");
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -62,18 +72,17 @@ public class TimeAPI {
             createPlayer(uuid);
             getMinutes(uuid);
         }
-
-        return i;
+        return null;
     }
 
     public static Integer getSeconds(UUID uuid){
-        Integer i = 0;
-
         if(playerExists(uuid)){
-            try{
-                ResultSet rs = xLobby.getMySQL().query("SELECT * FROM Time WHERE UUID= '" + uuid + "'");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Time WHERE UUID= '" + uuid + "'");
+
+                ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (Integer.valueOf(rs.getInt("SECONDS")) == null));
-                i = rs.getInt("SECONDS");
+                return rs.getInt("SECONDS");
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -81,13 +90,18 @@ public class TimeAPI {
             createPlayer(uuid);
             getSeconds(uuid);
         }
-
-        return i;
+        return null;
     }
 
     public static void setHours(UUID uuid, Integer hours){
         if(playerExists(uuid)){
-            xLobby.getMySQL().update("UPDATE Time SET HOURS= '" + hours + "' WHERE UUID= '" + uuid + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Time SET HOURS= '" + hours + "' WHERE UUID= '" + uuid + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createPlayer(uuid);
             setHours(uuid, hours);
@@ -96,7 +110,13 @@ public class TimeAPI {
 
     public static void setMinutes(UUID uuid, Integer minutes){
         if(playerExists(uuid)){
-            xLobby.getMySQL().update("UPDATE Time SET MINUTES= '" + minutes + "' WHERE UUID= '" + uuid + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Time SET MINUTES= '" + minutes + "' WHERE UUID= '" + uuid + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createPlayer(uuid);
             setMinutes(uuid, minutes);
@@ -105,7 +125,13 @@ public class TimeAPI {
 
     public static void setSeconds(UUID uuid, Integer seconds){
         if(playerExists(uuid)){
-            xLobby.getMySQL().update("UPDATE Time SET SECONDS= '" + seconds + "' WHERE UUID= '" + uuid + "';");
+            try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Time SET SECONDS= '" + seconds + "' WHERE UUID= '" + uuid + "';");
+                preparedStatement.execute();
+                preparedStatement.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }else{
             createPlayer(uuid);
             setSeconds(uuid, seconds);

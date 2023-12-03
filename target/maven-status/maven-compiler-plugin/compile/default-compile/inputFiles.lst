@@ -4,7 +4,6 @@ C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\events\
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\events\main\NavigatorEvent.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\events\main\TrailEvent.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\events\main\ProfilEvent.java
-C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\commands\TopCommand.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\mysql\CoinAPI.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\utils\snow\StarterpackHandler.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\events\DefaultChangesEvent.java
@@ -22,13 +21,11 @@ C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\utils\C
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\mysql\TimeAPI.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\utils\snow\ConfigHandler.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\events\DoubleJumpEvent.java
-C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\commands\DailyCommand.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\mysql\SettingAPI.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\events\gadget\special\EggBombEvent.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\mysql\EventAPI.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\utils\UUIDFetcher.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\utils\BoardBuilder.java
-C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\utils\TimeBuilder.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\events\gadget\FlugstabEvent.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\commands\LocationCommand.java
 C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\mysql\BytesAPI.java
