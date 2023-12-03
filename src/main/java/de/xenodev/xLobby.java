@@ -57,8 +57,8 @@ public class xLobby extends JavaPlugin {
 
         init(Bukkit.getPluginManager());
 
-        //BoardBuilder.updateScoreboard();
-        //CooldownBuilder.handlePlayerCooldown();
+        BoardBuilder.updateScoreboard();
+        CooldownBuilder.handlePlayerCooldown();
         if(EventAPI.getEvent().equalsIgnoreCase("Christmas")) {
             //new StarterpackHandler();
         }

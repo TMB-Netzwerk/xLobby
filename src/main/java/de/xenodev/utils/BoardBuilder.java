@@ -69,7 +69,7 @@ public class BoardBuilder {
 
                 }
             }
-        }.runTaskTimerAsynchronously(xLobby.getInstance(), 0, 20L*1);
+        }.runTaskTimerAsynchronously(xLobby.getInstance(), 0, 20L*10);
     }
 
     public static void updateScoreboardDisplay(){

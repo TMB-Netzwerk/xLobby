@@ -34,8 +34,6 @@ public class TicketAPI {
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
-        }else{
-            createPlayer(uuid);
         }
     }
 

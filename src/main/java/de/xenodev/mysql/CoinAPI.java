@@ -34,8 +34,6 @@ public class CoinAPI {
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
-        }else{
-            createPlayer(uuid);
         }
     }
 

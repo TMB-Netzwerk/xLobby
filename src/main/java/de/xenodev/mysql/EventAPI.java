@@ -33,8 +33,6 @@ public class EventAPI {
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
-        }else{
-            createEvent();
         }
     }
 

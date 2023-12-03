@@ -34,8 +34,6 @@ public class BuyAPI {
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
-        }else{
-            createPlayer(uuid);
         }
     }
 

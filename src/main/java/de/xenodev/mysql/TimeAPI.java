@@ -34,8 +34,6 @@ public class TimeAPI {
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
-        }else{
-            createPlayer(uuid);
         }
     }
 
@@ -96,8 +94,9 @@ public class TimeAPI {
     public static void setHours(UUID uuid, Integer hours){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Time SET HOURS= '" + hours + "' WHERE UUID= '" + uuid + "';");
-                preparedStatement.execute();
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Time` SET `HOURS` = ? WHERE `UUID` = ?;");
+                preparedStatement.setInt(1, hours);
+                preparedStatement.setString(2, uuid.toString());
                 preparedStatement.close();
             }catch(SQLException ex){
                 ex.printStackTrace();
@@ -111,8 +110,9 @@ public class TimeAPI {
     public static void setMinutes(UUID uuid, Integer minutes){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Time SET MINUTES= '" + minutes + "' WHERE UUID= '" + uuid + "';");
-                preparedStatement.execute();
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Time` SET `MINUTES` = ? WHERE `UUID` = ?;");
+                preparedStatement.setInt(1, minutes);
+                preparedStatement.setString(2, uuid.toString());
                 preparedStatement.close();
             }catch(SQLException ex){
                 ex.printStackTrace();
@@ -126,8 +126,9 @@ public class TimeAPI {
     public static void setSeconds(UUID uuid, Integer seconds){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Time SET SECONDS= '" + seconds + "' WHERE UUID= '" + uuid + "';");
-                preparedStatement.execute();
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Time` SET `SECONDS` = ? WHERE `UUID` = ?;");
+                preparedStatement.setInt(1, seconds);
+                preparedStatement.setString(2, uuid.toString());
                 preparedStatement.close();
             }catch(SQLException ex){
                 ex.printStackTrace();

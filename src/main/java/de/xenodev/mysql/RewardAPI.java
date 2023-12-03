@@ -34,8 +34,6 @@ public class RewardAPI {
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
-        }else{
-            createPlayer(uuid);
         }
     }
 

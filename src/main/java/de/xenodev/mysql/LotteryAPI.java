@@ -34,8 +34,6 @@ public class LotteryAPI {
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
-        }else{
-            createLottery(name);
         }
     }
 
@@ -43,7 +41,7 @@ public class LotteryAPI {
     public static Integer getLottery(String name){
         if(lotteryExists(name)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Event");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Lottery");
 
                 ResultSet rs = preparedStatement.executeQuery();
                 if((!rs.next()) || (Integer.valueOf(rs.getInt("USES")) == null));
