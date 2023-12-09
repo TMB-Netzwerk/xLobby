@@ -21,21 +21,22 @@ public class CalendarEvent implements Listener {
 
     @EventHandler
     public void handleProfilItemInteract(PlayerInteractEvent event){
-        Player player = event.getPlayer();
-        Boolean stopCalendar = true;
-        if(stopCalendar.equals(true) && !player.getName().equals("godlessFloof")){
-            player.sendMessage(xLobby.getPrefix() + "§cDer Adventskalender ist zur Zeit deaktiviert");
-            return;
-        }
-
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
-
-        Integer days = 0;
-
         if(event.getItem() == null) return;
         if(event.getItem().getType().equals(Material.PLAYER_HEAD)) {
             if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cAdventskalender §7«")) {
+                Player player = event.getPlayer();
+
+                LocalDateTime now = LocalDateTime.now();
+                DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+                DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+
+                if(!month.format(now).equals("01")){
+                    player.sendMessage(xLobby.getPrefix() + "§cDer Adventskalender ist verschoben auf Januar");
+                    return;
+                }
+
+                Integer days = 0;
+
                 Inventory calendarInventory = Bukkit.createInventory(player, 9*6, "§7» §cAdventskalender §7«");
 
                 for (int i = 0; i < 54; i++) {
@@ -221,7 +222,9 @@ public class CalendarEvent implements Listener {
                     CoinAPI.addCoins(player.getUniqueId(), 50000);
                     BytesAPI.addBytes(player.getUniqueId(), 10);
                     TicketAPI.addTickets(player.getUniqueId(), 30);
-                    player.sendMessage(xLobby.getPrefix() + "§7Du hast alle 24 Türchen geöffnet! Folgende Belohnungen erhältst du:");
+                    player.sendMessage(xLobby.getPrefix() + "§8-----------------------------------------------");
+                    player.sendMessage(xLobby.getPrefix() + "§7Du hast alle §e24 Türchen §7geöffnet!");
+                    player.sendMessage(xLobby.getPrefix() + "§c§lFolgende Belohnungen erhältst du:");
                     player.sendMessage(xLobby.getPrefix() + "§8- §5Christmastrail §7(1x)");
                     player.sendMessage(xLobby.getPrefix() + "§8- §eCoins §7(50000)");
                     player.sendMessage(xLobby.getPrefix() + "§8- §6Bytes §7(10)");

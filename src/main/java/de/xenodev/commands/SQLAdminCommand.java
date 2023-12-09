@@ -244,10 +244,10 @@ public class SQLAdminCommand implements CommandExecutor, TabCompleter, Listener 
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Christmastrail" + " §7«")){
-                if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Cristmastrail").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Cristmastrail", "true");
-                } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Cristmastrail").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Cristmastrail", "false");
+                if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Christmastrail").equals("false")) {
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Christmastrail", "true");
+                } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Christmastrail").equals("true")) {
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Christmastrail", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);

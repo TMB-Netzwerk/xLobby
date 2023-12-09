@@ -73,7 +73,7 @@ public class CooldownBuilder {
                         if (SettingAPI.getSetting(players.getUniqueId(), "Notetrail").equals("true")) {
                             xLobby.list113.NOTE.packet(true, players.getLocation().add(0, 0.5, 0)).sendTo(players);
                         }
-                        if (SettingAPI.getSetting(players.getUniqueId(), "Cristmastrail").equals("true")) {
+                        if (SettingAPI.getSetting(players.getUniqueId(), "Christmastrail").equals("true")) {
                             xLobby.list113.ITEM_SNOWBALL.packet(true, players.getLocation().add(0, 0.5, 0)).sendTo(players);
                             xLobby.list18.VILLAGER_HAPPY.packet(true, players.getLocation().add(0, 0.5, 0)).sendTo(players);
                             xLobby.list113.SNOWFLAKE.packet(true, players.getLocation().add(0, 0.5, 0)).sendTo(players);
