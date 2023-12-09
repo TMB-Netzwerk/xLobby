@@ -97,6 +97,7 @@ public class TimeAPI {
                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Time` SET `HOURS` = ? WHERE `UUID` = ?;");
                 preparedStatement.setInt(1, hours);
                 preparedStatement.setString(2, uuid.toString());
+                preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){
                 ex.printStackTrace();
@@ -113,6 +114,7 @@ public class TimeAPI {
                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Time` SET `MINUTES` = ? WHERE `UUID` = ?;");
                 preparedStatement.setInt(1, minutes);
                 preparedStatement.setString(2, uuid.toString());
+                preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){
                 ex.printStackTrace();
@@ -129,6 +131,7 @@ public class TimeAPI {
                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Time` SET `SECONDS` = ? WHERE `UUID` = ?;");
                 preparedStatement.setInt(1, seconds);
                 preparedStatement.setString(2, uuid.toString());
+                preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){
                 ex.printStackTrace();

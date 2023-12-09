@@ -58,7 +58,8 @@ public class EventAPI {
     public static void setEvent(String name){
         if(eventExists()){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Event SET NAME= '" + name + "';");
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Event` SET `NAME` = ?;");
+                preparedStatement.setString(1, name);
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){

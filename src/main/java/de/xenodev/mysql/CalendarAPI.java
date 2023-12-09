@@ -8,12 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-public class BytesAPI {
+public class CalendarAPI {
 
     private static boolean playerExists(UUID uuid){
 
         try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Bytes WHERE UUID= '" + uuid + "'");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Calendar WHERE UUID= '" + uuid + "'");
 
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
@@ -28,7 +28,7 @@ public class BytesAPI {
     public static void createPlayer(UUID uuid){
         if(!playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Bytes(UUID, BYTES) VALUES ('" + uuid + "', '0');");
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Calendar(UUID,day1,day2,day3,day4,day5,day6,day7,day8,day9,day10,day11,day12,day13,day14,day15,day16,day17,day18,day19,day20,day21,day22,day23,day24) VALUES ('" + uuid + "', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false');");
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){
@@ -37,29 +37,29 @@ public class BytesAPI {
         }
     }
 
-    public static Integer getBytes(UUID uuid){
+    public static String getDay(UUID uuid, String dayName){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Bytes WHERE UUID= '" + uuid + "'");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Calendar WHERE UUID= '" + uuid + "'");
 
                 ResultSet rs = preparedStatement.executeQuery();
-                if((!rs.next()) || (Integer.valueOf(rs.getInt("BYTES")) == null));
-                return rs.getInt("BYTES");
+                if((!rs.next()) || (String.valueOf(rs.getString(dayName.toLowerCase())) == null));
+                return rs.getString(dayName.toLowerCase());
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
         }else{
             createPlayer(uuid);
-            getBytes(uuid);
+            getDay(uuid, dayName);
         }
         return null;
     }
 
-    public static void setBytes(UUID uuid, Integer bytes){
+    public static void setDay(UUID uuid, String dayName, String dayBool){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Bytes` SET `BYTES` = ? WHERE `UUID` = ?;");
-                preparedStatement.setInt(1, bytes);
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Calendar` SET `" + dayName + "` = ? WHERE `UUID` = ?;");
+                preparedStatement.setString(1, dayBool);
                 preparedStatement.setString(2, uuid.toString());
                 preparedStatement.execute();
                 preparedStatement.close();
@@ -68,25 +68,7 @@ public class BytesAPI {
             }
         }else{
             createPlayer(uuid);
-            setBytes(uuid, bytes);
-        }
-    }
-
-    public static void addBytes(UUID uuid, Integer bytes){
-        if(playerExists(uuid)){
-            setBytes(uuid, Integer.valueOf(getBytes(uuid).intValue() + bytes.intValue()));
-        }else{
-            createPlayer(uuid);
-            addBytes(uuid, bytes);
-        }
-    }
-
-    public static void removeBytes(UUID uuid, Integer bytes){
-        if(playerExists(uuid)){
-            setBytes(uuid, Integer.valueOf(getBytes(uuid).intValue() - bytes.intValue()));
-        }else{
-            createPlayer(uuid);
-            removeBytes(uuid, bytes);
+            setDay(uuid, dayName, dayBool);
         }
     }
 }

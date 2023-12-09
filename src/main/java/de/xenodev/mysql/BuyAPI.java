@@ -28,7 +28,7 @@ public class BuyAPI {
     public static void createPlayer(UUID uuid){
         if(!playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Buy(UUID,enterhaken,flugstab,eggbomb,enderperl,switchbow,notetrail,hearttrail,ghosttrail,flametrail,colortrail) VALUES ('" + uuid + "', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false');");
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Buy(UUID,enterhaken,flugstab,eggbomb,enderperl,switchbow,notetrail,hearttrail,ghosttrail,flametrail,colortrail,christmastrail) VALUES ('" + uuid + "', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false');");
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){
@@ -55,10 +55,12 @@ public class BuyAPI {
         return null;
     }
 
-    public static void setBuy(UUID uuid, String buyName, Boolean buyBool){
+    public static void setBuy(UUID uuid, String buyName, String buyBool){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Buy SET " + buyName.toLowerCase() + "= '" + buyBool + "' WHERE UUID= '" + uuid + "';");
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Buy` SET `" + buyName + "` = ? WHERE `UUID` = ?;");
+                preparedStatement.setString(1, buyBool);
+                preparedStatement.setString(2, uuid.toString());
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){

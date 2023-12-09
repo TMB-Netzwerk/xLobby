@@ -84,6 +84,7 @@ public class LotteryEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         if (event.getView().getTitle().equals("§7» §aLottery §7«")) {
             event.setCancelled(true);
+            if(event.getCurrentItem() == null) return;
             if(event.getCurrentItem().getType().equals(Material.ENDER_CHEST)){
                 if(CooldownBuilder.lotteryCooldown.containsKey(player)) return;
                 int giveCoins = checkChestCoins();

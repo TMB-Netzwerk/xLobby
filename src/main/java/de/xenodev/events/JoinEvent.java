@@ -69,6 +69,7 @@ public class JoinEvent implements Listener {
         BuyAPI.createPlayer(player.getUniqueId());
         TicketAPI.createPlayer(player.getUniqueId());
         RewardAPI.createPlayer(player.getUniqueId());
+        CalendarAPI.createPlayer(player.getUniqueId());
 
         long current = System.currentTimeMillis();
         long time = RewardAPI.getTime(player.getUniqueId());
@@ -92,7 +93,11 @@ public class JoinEvent implements Listener {
         }else if(SettingAPI.getSetting(player.getUniqueId(), "switchbow").equals("true")){
             player.getInventory().setItem(1, new ItemBuilder(Material.BOW).setName("§7» §9Switch Bow §7«").build());
         }else if(SettingAPI.getSetting(player.getUniqueId(), "switchbow").equals("false") && SettingAPI.getSetting(player.getUniqueId(), "enderperl").equals("false") && SettingAPI.getSetting(player.getUniqueId(), "eggbomb").equals("false") && SettingAPI.getSetting(player.getUniqueId(), "flugstab").equals("false") && SettingAPI.getSetting(player.getUniqueId(), "enterhaken").equals("false")){
-            player.getInventory().setItem(1, new ItemBuilder(Material.BARRIER).setName("§7» §cKein Gadget ausgewählt §7«").build());
+            player.getInventory().setItem(1, new ItemBuilder(Material.BARRIER).setName("§7» §4Kein Gadget ausgewählt §7«").build());
+        }
+
+        if(EventAPI.getEvent().equalsIgnoreCase("Christmas")){
+            player.getInventory().setItem(7, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§7» §cAdventskalender §7«").build());
         }
         player.getInventory().setItem(8, new ItemBuilder(Material.PLAYER_HEAD).setOwner(player.getName()).setName("§7» §aProfil §7«").build());
     }

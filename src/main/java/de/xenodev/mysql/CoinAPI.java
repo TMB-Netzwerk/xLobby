@@ -58,7 +58,9 @@ public class CoinAPI {
     public static void setCoins(UUID uuid, Integer coins){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Coins SET COINS= '" + coins + "' WHERE UUID= '" + uuid + "';");
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Coins` SET `COINS` = ? WHERE `UUID` = ?;");
+                preparedStatement.setInt(1, coins);
+                preparedStatement.setString(2, uuid.toString());
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){

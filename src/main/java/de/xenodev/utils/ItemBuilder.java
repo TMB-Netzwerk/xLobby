@@ -12,8 +12,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.profile.PlayerProfile;
+import org.bukkit.profile.PlayerTextures;
 
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -71,17 +75,13 @@ public class ItemBuilder {
 
     public ItemBuilder setOwnerURL(String url){
         SkullMeta smeta = (SkullMeta) meta;
-        GameProfile profile = new GameProfile(UUID.randomUUID(), "");
-        byte[] encodedData = Base64.encodeBase64(String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes());
-        profile.getProperties().put("textures", new Property("textures", new String(encodedData)));
-        Field profileField = null;
+        PlayerProfile playerProfile = Bukkit.createPlayerProfile(UUID.randomUUID());
+        PlayerTextures playerTextures = playerProfile.getTextures();
         try {
-            profileField = smeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(smeta, profile);
-        } catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException e1) {
-            e1.printStackTrace();
-        }
+            playerTextures.setSkin(new URL("http://textures.minecraft.net/texture/" + url));
+        } catch (MalformedURLException e) { throw new RuntimeException(e); }
+        playerProfile.setTextures(playerTextures);
+        smeta.setOwnerProfile(playerProfile);
         return this;
     }
 

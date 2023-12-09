@@ -59,8 +59,9 @@ public class xLobby extends JavaPlugin {
 
         BoardBuilder.updateScoreboard();
         CooldownBuilder.handlePlayerCooldown();
+        CooldownBuilder.handleTrailCooldown();
         if(EventAPI.getEvent().equalsIgnoreCase("Christmas")) {
-            //new StarterpackHandler();
+            new StarterpackHandler();
         }
     }
 
@@ -87,6 +88,7 @@ public class xLobby extends JavaPlugin {
         pluginManager.registerEvents(new FlugstabEvent(), this);
         pluginManager.registerEvents(new LotteryEvent(), this);
         pluginManager.registerEvents(new SQLAdminCommand(), this);
+        pluginManager.registerEvents(new CalendarEvent(), this);
 
         getCommand("test").setExecutor(new TestCommand());
         getCommand("location").setExecutor(new LocationCommand());
@@ -129,8 +131,9 @@ public class xLobby extends JavaPlugin {
             PreparedStatement preparedStatement5 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Tickets(UUID VARCHAR(100),TICKETS BIGINT)");
             PreparedStatement preparedStatement6 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Reward(UUID VARCHAR(100),TIME BIGINT, STREAK BIGINT)");
             PreparedStatement preparedStatement7 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Event(NAME VARCHAR(100))");
-            PreparedStatement preparedStatement8 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Setting(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),eggboost_self VARCHAR(5),eggboost_other VARCHAR(5),hide VARCHAR(5),snowfall VARCHAR(5), traileffect VARCHAR(5))");
-            PreparedStatement preparedStatement9 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Buy(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5))");
+            PreparedStatement preparedStatement8 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Setting(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),eggboost_self VARCHAR(5),eggboost_other VARCHAR(5),hide VARCHAR(5),snowfall VARCHAR(5), traileffect VARCHAR(5),christmastrail VARCHAR(5))");
+            PreparedStatement preparedStatement9 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Buy(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),christmastrail VARCHAR(5))");
+            PreparedStatement preparedStatement10 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Calendar(UUID VARCHAR(100),day1 VARCHAR(5),day2 VARCHAR(5),day3 VARCHAR(5),day4 VARCHAR(5),day5 VARCHAR(5),day6 VARCHAR(5),day7 VARCHAR(5),day8 VARCHAR(5),day9 VARCHAR(5),day10 VARCHAR(5),day11 VARCHAR(5),day12 VARCHAR(5),day13 VARCHAR(5),day14 VARCHAR(5),day15 VARCHAR(5),day16 VARCHAR(5),day17 VARCHAR(5),day18 VARCHAR(5),day19 VARCHAR(5),day20 VARCHAR(5),day21 VARCHAR(5),day22 VARCHAR(5),day23 VARCHAR(5),day24 VARCHAR(5))");
             preparedStatement1.execute();
             preparedStatement2.execute();
             preparedStatement3.execute();
@@ -140,6 +143,7 @@ public class xLobby extends JavaPlugin {
             preparedStatement7.execute();
             preparedStatement8.execute();
             preparedStatement9.execute();
+            preparedStatement10.execute();
 
             preparedStatement1.close();
             preparedStatement2.close();
@@ -150,6 +154,7 @@ public class xLobby extends JavaPlugin {
             preparedStatement7.close();
             preparedStatement8.close();
             preparedStatement9.close();
+            preparedStatement10.close();
         }catch(SQLException ex){
             ex.printStackTrace();
         }

@@ -58,7 +58,9 @@ public class TicketAPI {
     public static void setTickets(UUID uuid, Integer tickets){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Tickets SET TICKETS= '" + tickets + "' WHERE UUID= '" + uuid + "';");
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Tickets` SET `TICKETS` = ? WHERE `UUID` = ?;");
+                preparedStatement.setInt(1, tickets);
+                preparedStatement.setString(2, uuid.toString());
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){

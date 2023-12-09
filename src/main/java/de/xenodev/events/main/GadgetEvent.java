@@ -59,14 +59,15 @@ public class GadgetEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         if(event.getView().getTitle().equalsIgnoreCase("§7» §6Gadgets §7«")){
             event.setCancelled(true);
-            if(event.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE) || event.getCurrentItem().getType().equals(Material.AIR) || event.getCurrentItem().getType().equals(Material.NETHER_STAR) || event.getCurrentItem() == null) return;
+            if(event.getCurrentItem() == null) return;
+            if(event.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE) || event.getCurrentItem().getType().equals(Material.AIR) || event.getCurrentItem().getType().equals(Material.NETHER_STAR)) return;
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cGadget löschen §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flugstab", false);
-                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", false);
-                SettingAPI.setSetting(player.getUniqueId(), "enderperl", false);
-                SettingAPI.setSetting(player.getUniqueId(), "switchbow", false);
-                player.getInventory().setItem(1, new ItemBuilder(Material.BARRIER).setName("§7» §cKein Gadget ausgewählt §7«").build());
+                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flugstab", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
+                player.getInventory().setItem(1, new ItemBuilder(Material.BARRIER).setName("§7» §4Kein Gadget ausgewählt §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 100, 1f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")) {
                 player.closeInventory();
@@ -84,43 +85,43 @@ public class GadgetEvent implements Listener {
                 player.openInventory(profilInventory);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 1f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Enterhaken §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", true);
-                SettingAPI.setSetting(player.getUniqueId(), "flugstab", false);
-                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", false);
-                SettingAPI.setSetting(player.getUniqueId(), "enderperl", false);
-                SettingAPI.setSetting(player.getUniqueId(), "switchbow", false);
+                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "true");
+                SettingAPI.setSetting(player.getUniqueId(), "flugstab", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
                 player.getInventory().setItem(1, new ItemBuilder(Material.FISHING_ROD).setName("§7» §9Enterhaken §7«").setUnbreakable().build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Flugstab §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flugstab", true);
-                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", false);
-                SettingAPI.setSetting(player.getUniqueId(), "enderperl", false);
-                SettingAPI.setSetting(player.getUniqueId(), "switchbow", false);
+                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flugstab", "true");
+                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
                 player.getInventory().setItem(1, new ItemBuilder(Material.BLAZE_ROD).setName("§7» §9Flugstab §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Eggbomb §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flugstab", false);
-                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", true);
-                SettingAPI.setSetting(player.getUniqueId(), "enderperl", false);
-                SettingAPI.setSetting(player.getUniqueId(), "switchbow", false);
+                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flugstab", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "true");
+                SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
                 player.getInventory().setItem(1, new ItemBuilder(Material.EGG).setName("§7» §9Eggbomb §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Enderperle §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flugstab", false);
-                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", false);
-                SettingAPI.setSetting(player.getUniqueId(), "enderperl", true);
-                SettingAPI.setSetting(player.getUniqueId(), "switchbow", false);
+                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flugstab", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "enderperl", "true");
+                SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
                 player.getInventory().setItem(1, new ItemBuilder(Material.ENDER_PEARL).setName("§7» §9Enderperle §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Switch Bow §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flugstab", false);
-                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", false);
-                SettingAPI.setSetting(player.getUniqueId(), "enderperl", false);
-                SettingAPI.setSetting(player.getUniqueId(), "switchbow", true);
+                SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flugstab", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "switchbow", "true");
                 player.getInventory().setItem(1, new ItemBuilder(Material.BOW).setName("§7» §9Switch Bow §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }

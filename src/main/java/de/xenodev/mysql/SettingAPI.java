@@ -28,7 +28,7 @@ public class SettingAPI {
     public static void createPlayer(UUID uuid){
         if(!playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Setting(UUID,enterhaken,flugstab,eggbomb,enderperl,switchbow,notetrail,hearttrail,ghosttrail,flametrail,colortrail,eggboost_self,eggboost_other,hide,snowfall,traileffect) VALUES ('" + uuid + "', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false');");
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Setting(UUID,enterhaken,flugstab,eggbomb,enderperl,switchbow,notetrail,hearttrail,ghosttrail,flametrail,colortrail,eggboost_self,eggboost_other,hide,snowfall,traileffect,christmastrail) VALUES ('" + uuid + "', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false', 'false');");
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){
@@ -55,10 +55,12 @@ public class SettingAPI {
         return null;
     }
 
-    public static void setSetting(UUID uuid, String settingName, Boolean settingBool){
+    public static void setSetting(UUID uuid, String settingName, String settingBool){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Setting SET " + settingName.toLowerCase() + "= '" + settingBool + "' WHERE UUID= '" + uuid + "';");
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Setting` SET `" + settingName + "` = ? WHERE `UUID` = ?;");
+                preparedStatement.setString(1, settingBool);
+                preparedStatement.setString(2, uuid.toString());
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){

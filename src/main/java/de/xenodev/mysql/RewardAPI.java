@@ -59,7 +59,9 @@ public class RewardAPI {
         long time = System.currentTimeMillis()+86400000;
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Reward SET TIME= '" + time + "' WHERE UUID= '" + uuid + "';");
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Reward` SET `TIME` = ? WHERE `UUID` = ?;");
+                preparedStatement.setLong(1, time);
+                preparedStatement.setString(2, uuid.toString());
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){
@@ -92,7 +94,9 @@ public class RewardAPI {
     public static void setStreak(UUID uuid, Integer streak){
         if(playerExists(uuid)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Reward SET STREAK= '" + streak + "' WHERE UUID= '" + uuid + "';");
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Reward` SET `STREAK` = ? WHERE `UUID` = ?;");
+                preparedStatement.setInt(1, streak);
+                preparedStatement.setString(2, uuid.toString());
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){

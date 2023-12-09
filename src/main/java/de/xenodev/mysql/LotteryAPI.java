@@ -59,7 +59,9 @@ public class LotteryAPI {
     public static void setLottery(String name, Integer uses){
         if(lotteryExists(name)){
             try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Lottery SET USES= '" + uses + "' WHERE NAME= '" + name + "';");
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE `Lottery` SET `USES` = ? WHERE `NAME` = ?;");
+                preparedStatement.setInt(1, uses);
+                preparedStatement.setString(2, name);
                 preparedStatement.execute();
                 preparedStatement.close();
             }catch(SQLException ex){

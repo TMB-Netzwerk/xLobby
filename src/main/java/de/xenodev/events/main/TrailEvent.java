@@ -21,6 +21,7 @@ public class TrailEvent implements Listener {
     public void handleTrails(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
         if (event.getView().getTitle().equalsIgnoreCase("§7» §aProfil §7«")) {
+            if(event.getCurrentItem() == null) return;
             if(event.getCurrentItem().getType().equals(Material.GOLDEN_BOOTS)){
                 if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Spuren §7«")){
                     event.setCancelled(true);
@@ -47,6 +48,9 @@ public class TrailEvent implements Listener {
                     if(BuyAPI.getBuy(player.getUniqueId(), "ghosttrail").equals("true")){
                         inv.addItem(new ItemBuilder(Material.LEATHER_BOOTS).setName("§7» §6Ghost §7«").setLore("§oTrail von Halloween 2022").setColor(Color.RED).setFlag(ItemFlag.HIDE_ATTRIBUTES).build());
                     }
+                    if(BuyAPI.getBuy(player.getUniqueId(), "christmastrail").equals("true")){
+                        inv.addItem(new ItemBuilder(Material.LEATHER_BOOTS).setName("§7» §6Christmas §7«").setLore("§oTrail von Weihnachten 2023").setColor(Color.WHITE).setFlag(ItemFlag.HIDE_ATTRIBUTES).build());
+                    }
 
                     inv.setItem(52, new ItemBuilder(Material.BARRIER).setName("§7» §cSpur löschen §7«").build());
                     inv.setItem(53, new ItemBuilder(Material.ARROW).setName("§7» §6Zurück §7«").build());
@@ -57,13 +61,15 @@ public class TrailEvent implements Listener {
             }
         }else if(event.getView().getTitle().equalsIgnoreCase("§7» §6Spuren §7«")){
             event.setCancelled(true);
-            if(event.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE) || event.getCurrentItem().getType().equals(Material.AIR) || event.getCurrentItem() == null) return;
+            if(event.getCurrentItem() == null) return;
+            if(event.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE) || event.getCurrentItem().getType().equals(Material.AIR)) return;
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cSpur löschen §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "notetrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flametrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "colortrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", false);
+                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "notetrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flametrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "colortrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "christmastrail", "false");
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 100, 1f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")) {
                 player.closeInventory();
@@ -81,45 +87,59 @@ public class TrailEvent implements Listener {
                 player.openInventory(profilInventory);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 1f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Heart §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", true);
-                SettingAPI.setSetting(player.getUniqueId(), "notetrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flametrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "colortrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", false);
+                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", "true");
+                SettingAPI.setSetting(player.getUniqueId(), "notetrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flametrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "colortrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "christmastrail", "false");
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
                 player.sendMessage(xLobby.getInstance().getPrefix() + " §7Du hast die §6Heart-Spur §7ausgewählt");
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Note §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "notetrail", true);
-                SettingAPI.setSetting(player.getUniqueId(), "flametrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "colortrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", false);
+                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "notetrail", "true");
+                SettingAPI.setSetting(player.getUniqueId(), "flametrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "colortrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "christmastrail", "false");
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
                 player.sendMessage(xLobby.getInstance().getPrefix() + " §7Du hast die §6Note-Spur §7ausgewählt");
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Flame §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "notetrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flametrail", true);
-                SettingAPI.setSetting(player.getUniqueId(), "colortrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", false);
+                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "notetrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flametrail", "true");
+                SettingAPI.setSetting(player.getUniqueId(), "colortrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "christmastrail", "false");
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
                 player.sendMessage(xLobby.getInstance().getPrefix() + " §7Du hast die §6Flame-Spur §7ausgewählt");
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Color §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "notetrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flametrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "colortrail", true);
-                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", false);
+                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "notetrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flametrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "colortrail", "true");
+                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "christmastrail", "false");
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
                 player.sendMessage(xLobby.getInstance().getPrefix() + " §7Du hast die §6Color-Spur §7ausgewählt");
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Ghost §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "notetrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "flametrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "colortrail", false);
-                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", true);
+                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "notetrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flametrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "colortrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", "true");
+                SettingAPI.setSetting(player.getUniqueId(), "christmastrail", "false");
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
                 player.sendMessage(xLobby.getInstance().getPrefix() + " §7Du hast die §6Ghost-Spur §7ausgewählt");
+            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Christmas §7«")){
+                SettingAPI.setSetting(player.getUniqueId(), "hearttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "notetrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "flametrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "colortrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "ghosttrail", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "christmastrail", "true");
+                player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
+                player.sendMessage(xLobby.getInstance().getPrefix() + " §7Du hast die §6Christmas-Spur §7ausgewählt");
             }
         }
     }

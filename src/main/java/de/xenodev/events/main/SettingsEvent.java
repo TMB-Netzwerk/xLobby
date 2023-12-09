@@ -72,16 +72,17 @@ public class SettingsEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         if(event.getView().getTitle().equalsIgnoreCase("§7» §6Settings §7«")){
             event.setCancelled(true);
-            if(event.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE) || event.getCurrentItem().getType().equals(Material.AIR) || event.getCurrentItem() == null) return;
+            if(event.getCurrentItem() == null) return;
+            if(event.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE) || event.getCurrentItem().getType().equals(Material.AIR)) return;
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cZurücksetzen §7«")){
-                SettingAPI.setSetting(player.getUniqueId(), "Hide", false);
+                SettingAPI.setSetting(player.getUniqueId(), "Hide", "false");
                 for(Player all : Bukkit.getOnlinePlayers()){
                     player.showPlayer(xLobby.getInstance(), all);
                 }
-                SettingAPI.setSetting(player.getUniqueId(), "Eggboost_other", false);
-                SettingAPI.setSetting(player.getUniqueId(), "Eggboost_self", false);
-                SettingAPI.setSetting(player.getUniqueId(), "Snowfall", false);
-                SettingAPI.setSetting(player.getUniqueId(), "Traileffect", false);
+                SettingAPI.setSetting(player.getUniqueId(), "Eggboost_other", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "Eggboost_self", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "Snowfall", "false");
+                SettingAPI.setSetting(player.getUniqueId(), "Traileffect", "false");
                 checkInventory(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 100, 1f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")){
@@ -101,14 +102,14 @@ public class SettingsEvent implements Listener {
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 1f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Hider §7«")){
                 if(SettingAPI.getSetting(player.getUniqueId(), "Hide").equals("true")) {
-                    SettingAPI.setSetting(player.getUniqueId(), "Hide", false);
+                    SettingAPI.setSetting(player.getUniqueId(), "Hide", "false");
                     for(Player all : Bukkit.getOnlinePlayers()){
                         player.showPlayer(xLobby.getInstance(), all);
                     }
                 }else if(SettingAPI.getSetting(player.getUniqueId(), "Hide").equals("false")){
-                    SettingAPI.setSetting(player.getUniqueId(), "Hide", true);
-                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_other", false);
-                    SettingAPI.setSetting(player.getUniqueId(), "Traileffect", false);
+                    SettingAPI.setSetting(player.getUniqueId(), "Hide", "true");
+                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_other", "false");
+                    SettingAPI.setSetting(player.getUniqueId(), "Traileffect", "false");
                     for(Player all : Bukkit.getOnlinePlayers()){
                         player.hidePlayer(xLobby.getInstance(), all);
                     }
@@ -117,33 +118,33 @@ public class SettingsEvent implements Listener {
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Eggboost Other §7«")){
                 if(SettingAPI.getSetting(player.getUniqueId(), "Eggboost_other").equals("true")) {
-                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_other", false);
+                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_other", "false");
                 }else if(SettingAPI.getSetting(player.getUniqueId(), "Eggboost_other").equals("false")){
-                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_other", true);
+                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_other", "true");
                 }
                 checkInventory(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Eggboost Self §7«")){
                 if(SettingAPI.getSetting(player.getUniqueId(), "Eggboost_self").equals("true")) {
-                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_self", false);
+                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_self", "false");
                 }else if(SettingAPI.getSetting(player.getUniqueId(), "Eggboost_self").equals("false")){
-                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_self", true);
+                    SettingAPI.setSetting(player.getUniqueId(), "Eggboost_self", "true");
                 }
                 checkInventory(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Snowfall §7«")){
                 if(SettingAPI.getSetting(player.getUniqueId(), "Snowfall").equals("true")) {
-                    SettingAPI.setSetting(player.getUniqueId(), "Snowfall", false);
+                    SettingAPI.setSetting(player.getUniqueId(), "Snowfall", "false");
                 }else if(SettingAPI.getSetting(player.getUniqueId(), "Snowfall").equals("false")){
-                    SettingAPI.setSetting(player.getUniqueId(), "Snowfall", true);
+                    SettingAPI.setSetting(player.getUniqueId(), "Snowfall", "true");
                 }
                 checkInventory(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Traileffect §7«")){
                 if(SettingAPI.getSetting(player.getUniqueId(), "Traileffect").equals("true")) {
-                    SettingAPI.setSetting(player.getUniqueId(), "Traileffect", false);
+                    SettingAPI.setSetting(player.getUniqueId(), "Traileffect", "false");
                 }else if(SettingAPI.getSetting(player.getUniqueId(), "Traileffect").equals("false")){
-                    SettingAPI.setSetting(player.getUniqueId(), "Traileffect", true);
+                    SettingAPI.setSetting(player.getUniqueId(), "Traileffect", "true");
                 }
                 checkInventory(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);

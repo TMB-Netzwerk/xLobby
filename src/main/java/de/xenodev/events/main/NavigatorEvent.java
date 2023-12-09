@@ -54,6 +54,7 @@ public class NavigatorEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         if(event.getView().getTitle().equalsIgnoreCase("§7» §6Navigator §7«")){
             event.setCancelled(true);
+            if(event.getCurrentItem() == null) return;
             if(event.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE)) return;
             if(event.getCurrentItem().getType().equals(Material.BARRIER)){
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 100, 1f);

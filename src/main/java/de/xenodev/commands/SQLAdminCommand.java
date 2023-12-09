@@ -1,9 +1,6 @@
 package de.xenodev.commands;
 
-import de.xenodev.mysql.BuyAPI;
-import de.xenodev.mysql.BytesAPI;
-import de.xenodev.mysql.CoinAPI;
-import de.xenodev.mysql.TicketAPI;
+import de.xenodev.mysql.*;
 import de.xenodev.utils.ItemBuilder;
 import de.xenodev.utils.UUIDFetcher;
 import de.xenodev.xLobby;
@@ -160,89 +157,97 @@ public class SQLAdminCommand implements CommandExecutor, TabCompleter, Listener 
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 1f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Switchbow" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Switchbow").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Switchbow", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Switchbow", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Switchbow").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Switchbow", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Switchbow", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Eggbomb" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Eggbomb").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Eggbomb", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Eggbomb", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Eggbomb").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Eggbomb", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Eggbomb", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Flugstab" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Flugstab").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Flugstab", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Flugstab", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Flugstab").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Flugstab", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Flugstab", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Enterhaken" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Enterhaken").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enterhaken", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enterhaken", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Enterhaken").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enterhaken", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enterhaken", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Enderperl" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Enderperl").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enderperl", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enderperl", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Enderperl").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enderperl", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enderperl", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Enderperl" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Enderperl").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enderperl", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enderperl", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Enderperl").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enderperl", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Enderperl", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Notetrail" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Notetrail").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Notetrail", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Notetrail", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Notetrail").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Notetrail", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Notetrail", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Hearttrail" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Hearttrail").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Hearttrail", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Hearttrail", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Hearttrail").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Hearttrail", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Hearttrail", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Ghosttrail" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Ghosttrail").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Ghosttrail", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Ghosttrail", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Ghosttrail").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Ghosttrail", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Ghosttrail", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Flametrail" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Flametrail").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Flametrail", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Flametrail", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Flametrail").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Flametrail", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Flametrail", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Colortrail" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Colortrail").equals("false")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Colortrail", true);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Colortrail", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Colortrail").equals("true")) {
-                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Colortrail", false);
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Colortrail", "false");
+                }
+                updateInv(player);
+                player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
+            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Christmastrail" + " §7«")){
+                if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Cristmastrail").equals("false")) {
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Cristmastrail", "true");
+                } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Cristmastrail").equals("true")) {
+                    BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Cristmastrail", "false");
                 }
                 updateInv(player);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
@@ -316,6 +321,11 @@ public class SQLAdminCommand implements CommandExecutor, TabCompleter, Listener 
             inventory.setItem(9, new ItemBuilder(Material.MAGMA_CREAM).setName("§7» §6" + "Switchbow" + " §7«").setLore("", "§7Gadget §2gekauft").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
         } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Switchbow").equals("false")) {
             inventory.setItem(9, new ItemBuilder(Material.SLIME_BALL).setName("§7» §6" + "Switchbow" + " §7«").setLore("", "§7Gadget §cnicht gekauft").build());
+        }
+        if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Christmastrail").equals("true")) {
+            inventory.setItem(9, new ItemBuilder(Material.MAGMA_CREAM).setName("§7» §6" + "Christmastrail" + " §7«").setLore("", "§7Gadget §2gekauft").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
+        } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Christmastrail").equals("false")) {
+            inventory.setItem(9, new ItemBuilder(Material.SLIME_BALL).setName("§7» §6" + "Christmastrail" + " §7«").setLore("", "§7Gadget §cnicht gekauft").build());
         }
 
         inventory.setItem(26, new ItemBuilder(Material.BARRIER).setName("§7» §6Zurück §7«").build());

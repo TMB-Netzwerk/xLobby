@@ -27,6 +27,7 @@ public class ShopEvent implements Listener {
     public void handleShopInventoryInteractOpen(InventoryClickEvent event){
         Player player = (Player) event.getWhoClicked();
         if(event.getView().getTitle().equalsIgnoreCase("§7» §aProfil §7«")) {
+            if(event.getCurrentItem() == null) return;
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Shop §7«")){
                 event.setCancelled(true);
                 checkInventory(player, "start");
@@ -40,6 +41,7 @@ public class ShopEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         if(event.getView().getTitle().equalsIgnoreCase("§7» §6Shop §7«")) {
             event.setCancelled(true);
+            if(event.getCurrentItem() == null) return;
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Gadgets §7«")){
                 checkInventory(player, "gatgets");
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Spuren §7«")){
@@ -55,6 +57,7 @@ public class ShopEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         if(event.getView().getTitle().equalsIgnoreCase("§7» §6Shop §7«")) {
             event.setCancelled(true);
+            if(event.getCurrentItem() == null) return;
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")) {
                 player.closeInventory();
                 Inventory profilInventory = Bukkit.createInventory(player, 9*5, "§7» §aProfil §7«");
@@ -100,6 +103,9 @@ public class ShopEvent implements Listener {
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Ghost-Trail §7«")){
                 checkBuy(player, "ghosttrail", 90, "bytes", null);
                 checkInventory(player, "spuren");
+            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Christmas-Trail §7«")){
+                checkBuy(player, "christmastrail", 99999, "bytes", null);
+                checkInventory(player, "spuren");
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Coins -> Bytes §7«")){
                 if(bytesAmount.containsKey(player)){
                     bytesAmount.remove(player);
@@ -111,13 +117,13 @@ public class ShopEvent implements Listener {
                     shopInventory.setItem(i, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
                 }
 
-                shopInventory.setItem(1, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("http://textures.minecraft.net/texture/a99aaf2456a6122de8f6b62683f2bc2eed9abb81fd5bea1b4c23a58156b669").setName("§7Byte §2+1").build());
-                shopInventory.setItem(2, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("http://textures.minecraft.net/texture/7d695d335e6be8cb2a34e05e18ea2d12c3b17b8166ba62d6982a643df71ffac5").setName("§7Byte §2+10").build());
+                shopInventory.setItem(1, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("a99aaf2456a6122de8f6b62683f2bc2eed9abb81fd5bea1b4c23a58156b669").setName("§7Byte §2+1").build());
+                shopInventory.setItem(2, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("7d695d335e6be8cb2a34e05e18ea2d12c3b17b8166ba62d6982a643df71ffac5").setName("§7Byte §2+10").build());
 
-                shopInventory.setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("http://textures.minecraft.net/texture/2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                shopInventory.setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
 
-                shopInventory.setItem(6, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("http://textures.minecraft.net/texture/437862cdc159998ed6b6fdccaaa4675867d4484db512a84c367fabf4caf60").setName("§7Byte §c-10").build());
-                shopInventory.setItem(7, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("http://textures.minecraft.net/texture/3912d45b1c78cc22452723ee66ba2d15777cc288568d6c1b62a545b29c7187").setName("§7Byte §c-1").build());
+                shopInventory.setItem(6, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("437862cdc159998ed6b6fdccaaa4675867d4484db512a84c367fabf4caf60").setName("§7Byte §c-10").build());
+                shopInventory.setItem(7, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("3912d45b1c78cc22452723ee66ba2d15777cc288568d6c1b62a545b29c7187").setName("§7Byte §c-1").build());
 
                 shopInventory.setItem(26, new ItemBuilder(Material.ARROW).setName("§7» §6Zurück §7«").build());
 
@@ -134,6 +140,7 @@ public class ShopEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         if(event.getView().getTitle().equalsIgnoreCase("§7» §6Bytes §7«")) {
             event.setCancelled(true);
+            if(event.getCurrentItem() == null) return;
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")) {
                 player.closeInventory();
 
@@ -144,18 +151,18 @@ public class ShopEvent implements Listener {
                 if(bytesAmount.get(player) >= 2) {
                     bytesAmount.replace(player, bytesAmount.get(player), bytesAmount.get(player) - 1);
                 }
-                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("http://textures.minecraft.net/texture/2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Byte §2+1")){
                 bytesAmount.replace(player, bytesAmount.get(player), bytesAmount.get(player) + 1);
-                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("http://textures.minecraft.net/texture/2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Byte §c-10")){
                 if(bytesAmount.get(player) >= 11){
                     bytesAmount.replace(player, bytesAmount.get(player), bytesAmount.get(player) - 10);
                 }
-                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("http://textures.minecraft.net/texture/2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Byte §2+10")){
                 bytesAmount.replace(player, bytesAmount.get(player), bytesAmount.get(player) + 10);
-                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("http://textures.minecraft.net/texture/2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6Coins wechseln")){
                 checkBuy(player, "bytes", 5000, "coins", bytesAmount.get(player));
                 checkInventory(player, "extras");
@@ -238,6 +245,11 @@ public class ShopEvent implements Listener {
                     shopInventory.addItem(new ItemBuilder(Material.LEATHER_BOOTS).setName("§7» §6Ghost-Trail §7«").setLore("§7Die §6Ghost-Trail §7kosten §c90 §7Bytes", "", "§oTrail von Halloween 2022").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).setFlag(ItemFlag.HIDE_ATTRIBUTES).setColor(Color.RED).build());
                 }
             }
+            if(EventAPI.getEvent().equalsIgnoreCase("Christmas")) {
+                if (BuyAPI.getBuy(player.getUniqueId(), "christmastrail").equals("false")) {
+                    shopInventory.addItem(new ItemBuilder(Material.LEATHER_BOOTS).setName("§7» §6Christmas-Trail §7«").setLore("§7Die §6Christmas-Trail §7kosten §c99999 §7Bytes", "", "§oTrail von Weihnachten 2023").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).setFlag(ItemFlag.HIDE_ATTRIBUTES).setColor(Color.WHITE).build());
+                }
+            }
             shopInventory.setItem(36, new ItemBuilder(Material.NETHER_STAR).setName("§7» §7Coins: §6" + amountCoins + " §8| §7Bytes: §6" + amountBytes + " §8| §7Tickets: §6" + amountTickets + " §7«").build());
         }else if(shopName.equalsIgnoreCase("extras")){
             player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
@@ -261,7 +273,7 @@ public class ShopEvent implements Listener {
             if(BytesAPI.getBytes(player.getUniqueId()) >= buyedAmount){
                 BytesAPI.removeBytes(player.getUniqueId(), buyedAmount);
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 100f);
-                BuyAPI.setBuy(player.getUniqueId(), buyedName, true);
+                BuyAPI.setBuy(player.getUniqueId(), buyedName, "true");
             }else {
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 100, 1f);
             }
