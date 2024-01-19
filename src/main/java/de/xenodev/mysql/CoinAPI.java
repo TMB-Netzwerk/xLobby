@@ -1,6 +1,7 @@
 package de.xenodev.mysql;
 
 import de.xenodev.xLobby;
+import org.bukkit.inventory.ItemStack;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

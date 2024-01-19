@@ -94,18 +94,20 @@ public class xLobby extends JavaPlugin {
         getCommand("location").setExecutor(new LocationCommand());
         getCommand("sqladmin").setExecutor(new SQLAdminCommand());
         getCommand("event").setExecutor(new EventCommand());
+        getCommand("redeem").setExecutor(new RedeemCommand());
 
         getCommand("location").setTabCompleter(new LocationCommand());
         getCommand("sqladmin").setTabCompleter(new SQLAdminCommand());
         getCommand("event").setTabCompleter(new EventCommand());
+        getCommand("redeem").setTabCompleter(new RedeemCommand());
 
-        LotteryAPI.createLottery("tiny");
-        LotteryAPI.createLottery("small");
-        LotteryAPI.createLottery("medium");
-        LotteryAPI.createLottery("good");
-        LotteryAPI.createLottery("big");
-        LotteryAPI.createLottery("hyper");
-        LotteryAPI.createLottery("open");
+        LotteryAPI.createLottery("tiny", 0.0);
+        LotteryAPI.createLottery("small", 0.1);
+        LotteryAPI.createLottery("medium", 0.05);
+        LotteryAPI.createLottery("good", 0.01);
+        LotteryAPI.createLottery("big", 0.001);
+        LotteryAPI.createLottery("hyper", 0.0001);
+        LotteryAPI.createLottery("open", 0.0);
         EventAPI.createEvent();
     }
 
@@ -126,14 +128,15 @@ public class xLobby extends JavaPlugin {
         try (Connection connection = xLobby.getMySQL().dataSource.getConnection()) {
             PreparedStatement preparedStatement1 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Time(UUID VARCHAR(100),HOURS BIGINT,MINUTES INT,SECONDS INT)");
             PreparedStatement preparedStatement2 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Coins(UUID VARCHAR(100),COINS BIGINT)");
-            PreparedStatement preparedStatement3 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Lottery(NAME VARCHAR(100),USES BIGINT)");
+            PreparedStatement preparedStatement3 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Lottery(NAME VARCHAR(100),USES BIGINT, PERCENT DOUBLE)");
             PreparedStatement preparedStatement4 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Bytes(UUID VARCHAR(100),BYTES BIGINT)");
             PreparedStatement preparedStatement5 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Tickets(UUID VARCHAR(100),TICKETS BIGINT)");
             PreparedStatement preparedStatement6 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Reward(UUID VARCHAR(100),TIME BIGINT, STREAK BIGINT)");
-            PreparedStatement preparedStatement7 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Event(NAME VARCHAR(100))");
-            PreparedStatement preparedStatement8 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Setting(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),eggboost_self VARCHAR(5),eggboost_other VARCHAR(5),hide VARCHAR(5),snowfall VARCHAR(5), traileffect VARCHAR(5),christmastrail VARCHAR(5))");
-            PreparedStatement preparedStatement9 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Buy(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),christmastrail VARCHAR(5))");
-            PreparedStatement preparedStatement10 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Calendar(UUID VARCHAR(100),day1 VARCHAR(5),day2 VARCHAR(5),day3 VARCHAR(5),day4 VARCHAR(5),day5 VARCHAR(5),day6 VARCHAR(5),day7 VARCHAR(5),day8 VARCHAR(5),day9 VARCHAR(5),day10 VARCHAR(5),day11 VARCHAR(5),day12 VARCHAR(5),day13 VARCHAR(5),day14 VARCHAR(5),day15 VARCHAR(5),day16 VARCHAR(5),day17 VARCHAR(5),day18 VARCHAR(5),day19 VARCHAR(5),day20 VARCHAR(5),day21 VARCHAR(5),day22 VARCHAR(5),day23 VARCHAR(5),day24 VARCHAR(5))");
+            PreparedStatement preparedStatement7 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Redeem(CODE VARCHAR(25),TYPE VARCHAR(10), AMOUNT BIGINT)");
+            PreparedStatement preparedStatement8 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Event(NAME VARCHAR(100))");
+            PreparedStatement preparedStatement9 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Setting(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),eggboost_self VARCHAR(5),eggboost_other VARCHAR(5),hide VARCHAR(5),snowfall VARCHAR(5), traileffect VARCHAR(5),christmastrail VARCHAR(5))");
+            PreparedStatement preparedStatement10 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Buy(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),christmastrail VARCHAR(5))");
+            PreparedStatement preparedStatement11 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Calendar(UUID VARCHAR(100),day1 VARCHAR(5),day2 VARCHAR(5),day3 VARCHAR(5),day4 VARCHAR(5),day5 VARCHAR(5),day6 VARCHAR(5),day7 VARCHAR(5),day8 VARCHAR(5),day9 VARCHAR(5),day10 VARCHAR(5),day11 VARCHAR(5),day12 VARCHAR(5),day13 VARCHAR(5),day14 VARCHAR(5),day15 VARCHAR(5),day16 VARCHAR(5),day17 VARCHAR(5),day18 VARCHAR(5),day19 VARCHAR(5),day20 VARCHAR(5),day21 VARCHAR(5),day22 VARCHAR(5),day23 VARCHAR(5),day24 VARCHAR(5))");
             preparedStatement1.execute();
             preparedStatement2.execute();
             preparedStatement3.execute();
@@ -144,6 +147,7 @@ public class xLobby extends JavaPlugin {
             preparedStatement8.execute();
             preparedStatement9.execute();
             preparedStatement10.execute();
+            preparedStatement11.execute();
 
             preparedStatement1.close();
             preparedStatement2.close();
@@ -155,6 +159,7 @@ public class xLobby extends JavaPlugin {
             preparedStatement8.close();
             preparedStatement9.close();
             preparedStatement10.close();
+            preparedStatement11.close();
         }catch(SQLException ex){
             ex.printStackTrace();
         }

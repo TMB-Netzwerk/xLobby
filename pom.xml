@@ -6,7 +6,7 @@
 
     <groupId>de.xenodev</groupId>
     <artifactId>xLobby</artifactId>
-    <version>1.8-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
 
     <properties>
         <java.version>17</java.version>

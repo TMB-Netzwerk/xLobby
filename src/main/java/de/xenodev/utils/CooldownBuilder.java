@@ -8,12 +8,12 @@ import org.bukkit.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CooldownBuilder {
 
-    public static HashMap<Player, Integer> lotteryCooldown = new HashMap<>();
-    public static HashMap<Player, Integer> lotteryStopSpam = new HashMap<>();
+    public static ArrayList<Player> lotteryCooldown = new ArrayList<>();
     public static HashMap<Player, Integer> eggbombCooldown = new HashMap<>();
     public static HashMap<Player, Integer> switchbowCooldown = new HashMap<>();
     public static HashMap<Player, Integer> enderperlCooldown = new HashMap<>();
@@ -23,14 +23,6 @@ public class CooldownBuilder {
             @Override
             public void run() {
                 for(Player players : Bukkit.getOnlinePlayers()){
-                    if(lotteryCooldown.containsKey(players)){
-                        lotteryCooldown.replace(players, lotteryCooldown.get(players), lotteryCooldown.get(players) - 1);
-                        if(lotteryCooldown.get(players) == 0) lotteryCooldown.remove(players);
-                    }
-                    if(lotteryStopSpam.containsKey(players)){
-                        lotteryStopSpam.replace(players, lotteryStopSpam.get(players), lotteryStopSpam.get(players) - 1);
-                        if(lotteryStopSpam.get(players) == 0) lotteryStopSpam.remove(players);
-                    }
                     if(eggbombCooldown.containsKey(players)){
                         eggbombCooldown.replace(players, eggbombCooldown.get(players), eggbombCooldown.get(players) - 1);
                         if(eggbombCooldown.get(players) == 0) eggbombCooldown.remove(players);

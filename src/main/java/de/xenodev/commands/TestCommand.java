@@ -1,5 +1,7 @@
 package de.xenodev.commands;
 
+import de.xenodev.events.main.LotteryEvent;
+import de.xenodev.mysql.RedeemAPI;
 import de.xenodev.utils.LocationBuilder;
 import de.xenodev.xLobby;
 import eu.cloudnetservice.driver.inject.InjectionLayer;
@@ -25,7 +27,7 @@ public class TestCommand implements CommandExecutor {
         if(sender instanceof Player){
             Player player = (Player)sender;
 
-            player.sendMessage(SQLAdminCommand.getName(player));
+            player.sendMessage(xLobby.getPrefix() + "§7Der Command mach nücht!");
         }
 
         return false;

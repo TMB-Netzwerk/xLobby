@@ -18,12 +18,15 @@ de\xenodev\utils\NameFetcher.class
 de\xenodev\utils\snow\StarterpackHandler.class
 de\xenodev\events\DefaultChangesEvent.class
 de\xenodev\events\gadget\EnterhakenEvent.class
+de\xenodev\utils\LotteryBuilder.class
 de\xenodev\utils\MusicBuilder.class
+de\xenodev\commands\RedeemCommand.class
 de\xenodev\mysql\MySQL.class
 de\xenodev\utils\CooldownBuilder$1.class
 de\xenodev\events\gadget\FlugstabEvent.class
 de\xenodev\events\main\SettingsEvent.class
 de\xenodev\commands\SQLAdminCommand.class
+de\xenodev\utils\RedeemBuilder.class
 de\xenodev\events\gadget\EnderperleEvent.class
 de\xenodev\events\main\LotteryEvent.class
 de\xenodev\events\gadget\special\EggBombEvent.class
@@ -37,6 +40,7 @@ de\xenodev\events\main\TrailEvent.class
 de\xenodev\commands\EventCommand.class
 de\xenodev\utils\UUIDFetcher.class
 de\xenodev\events\gadget\special\SwitchBow.class
+de\xenodev\mysql\RedeemAPI.class
 de\xenodev\utils\snow\ConfigHandler.class
 de\xenodev\events\main\ProfilEvent.class
 de\xenodev\mysql\TimeAPI.class

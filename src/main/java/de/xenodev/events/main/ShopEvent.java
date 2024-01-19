@@ -128,9 +128,6 @@ public class ShopEvent implements Listener {
                 shopInventory.setItem(26, new ItemBuilder(Material.ARROW).setName("§7» §6Zurück §7«").build());
 
                 player.openInventory(shopInventory);
-            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Lottery-Ticket §7«")){
-                checkBuy(player, "ticket", null, "ticket", null);
-                checkInventory(player, "extras");
             }
         }
     }
@@ -281,14 +278,6 @@ public class ShopEvent implements Listener {
             if(CoinAPI.getCoins(player.getUniqueId()) >= buyedAmount*amount){
                 CoinAPI.removeCoins(player.getUniqueId(), buyedAmount*amount);
                 BytesAPI.addBytes(player.getUniqueId(), 1*amount);
-                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 100f);
-            }else {
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 100, 1f);
-            }
-        }else if(buyedWallet.equals("ticket")){
-            if(CoinAPI.getCoins(player.getUniqueId()) >= xLobby.getInstance().getConfig().getInt("Settings.Lotterycost")){
-                CoinAPI.removeCoins(player.getUniqueId(), xLobby.getInstance().getConfig().getInt("Settings.Lotterycost"));
-                TicketAPI.addTickets(player.getUniqueId(), 1);
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 100f);
             }else {
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 100, 1f);

@@ -4,6 +4,7 @@ import de.xenodev.mysql.*;
 import de.xenodev.utils.ItemBuilder;
 import de.xenodev.xLobby;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -12,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,12 +30,6 @@ public class CalendarEvent implements Listener {
 
                 LocalDateTime now = LocalDateTime.now();
                 DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
-                DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
-
-                if(!month.format(now).equals("01")){
-                    player.sendMessage(xLobby.getPrefix() + "§cDer Adventskalender ist verschoben auf Januar");
-                    return;
-                }
 
                 Integer days = 0;
 
@@ -151,6 +147,10 @@ public class CalendarEvent implements Listener {
                     }
                 }
 
+                calendarInventory.setItem(48, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
+                calendarInventory.setItem(49, new ItemBuilder(Material.LEATHER_BOOTS).setColor(Color.WHITE).setName("§6Christmas Trail").setLore("§5§oWeihnachtsquest:", "§8- §7Hole alle 24 Geschenke ab").setFlag(ItemFlag.HIDE_DYE).build());
+                calendarInventory.setItem(50, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
+
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 1f);
                 player.openInventory(calendarInventory);
             }
@@ -162,34 +162,33 @@ public class CalendarEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         if (event.getView().getTitle().equalsIgnoreCase("§7» §cAdventskalender §7«")) {
             event.setCancelled(true);
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+            if(!month.format(now).equals("01")){
+                player.sendMessage(xLobby.getPrefix() + "§cDer Adventskalender ist verschoben auf Januar");
+                player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_AMBIENT, 100, 1f);
+                return;
+            }
             if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§a")){
                 String number = event.getCurrentItem().getItemMeta().getDisplayName().replace("§aTürchen ", "");
                 player.sendMessage(xLobby.getPrefix() + "§aDu hast Türchen " + number + " geöffnet");
                 CalendarAPI.setDay(player.getUniqueId(), "day" + number, "true");
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 1f);
                 player.closeInventory();
-                int los = new Random().nextInt(1, 5);
+                int los = new Random().nextInt(1, 4);
                 switch (los){
                     case 1:
-                        int randomCoins = new Random().nextInt(1, 10000);
+                        int randomCoins = new Random().nextInt(5000, 50001);
                         CoinAPI.addCoins(player.getUniqueId(), randomCoins);
                         player.sendMessage(xLobby.getPrefix() + "§7Du hast §6" + randomCoins + " §7Coins aus dem Geschenk bekommen");
                         break;
                     case 2:
-                        int randomBytes = new Random().nextInt(1, 10);
+                        int randomBytes = new Random().nextInt(3, 16);
                         BytesAPI.addBytes(player.getUniqueId(), randomBytes);
                         player.sendMessage(xLobby.getPrefix() + "§7Du hast §6" + randomBytes + " §7Bytes aus dem Geschenk bekommen");
                         break;
                     case 3:
-                        int randomTime = new Random().nextInt(1, 4);
-                        int getCoins = ((new Random().nextInt(500, 1000)*6)*randomTime)+(2500*randomTime);
-                        TimeAPI.addHours(player.getUniqueId(), randomTime);
-                        CoinAPI.addCoins(player.getUniqueId(), getCoins);
-                        player.sendMessage(xLobby.getPrefix() + "§7Du hast §6" + randomTime + " §7Stunden Spielzeit aus dem Geschenk bekommen");
-                        player.sendMessage(xLobby.getPrefix() + "§7Du hast §e" + getCoins + " §7Coins fürs Spielen erhalten");
-                        break;
-                    case 4:
-                        int randomTicket = new Random().nextInt(1, 20);
+                        int randomTicket = new Random().nextInt(5, 31);
                         TicketAPI.addTickets(player.getUniqueId(), randomTicket);
                         player.sendMessage(xLobby.getPrefix() + "§7Du hast §6" + randomTicket + " §7Tickets aus dem Geschenk bekommen");
                         break;
@@ -219,9 +218,9 @@ public class CalendarEvent implements Listener {
                         CalendarAPI.getDay(player.getUniqueId(), "day23").equals("true") &&
                         CalendarAPI.getDay(player.getUniqueId(), "day24").equals("true")){
                     BuyAPI.setBuy(player.getUniqueId(), "christmastrail", "true");
-                    CoinAPI.addCoins(player.getUniqueId(), 50000);
-                    BytesAPI.addBytes(player.getUniqueId(), 10);
-                    TicketAPI.addTickets(player.getUniqueId(), 30);
+                    CoinAPI.addCoins(player.getUniqueId(), 500000);
+                    BytesAPI.addBytes(player.getUniqueId(), 25);
+                    TicketAPI.addTickets(player.getUniqueId(), 50);
                     player.sendMessage(xLobby.getPrefix() + "§8-----------------------------------------------");
                     player.sendMessage(xLobby.getPrefix() + "§7Du hast alle §e24 Türchen §7geöffnet!");
                     player.sendMessage(xLobby.getPrefix() + "§c§lFolgende Belohnungen erhältst du:");

@@ -96,9 +96,9 @@ public class JoinEvent implements Listener {
             player.getInventory().setItem(1, new ItemBuilder(Material.BARRIER).setName("§7» §4Kein Gadget ausgewählt §7«").build());
         }
 
-        if(EventAPI.getEvent().equalsIgnoreCase("Christmas")){
+        ///if(EventAPI.getEvent().equalsIgnoreCase("Christmas")){
             player.getInventory().setItem(7, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§7» §cAdventskalender §7«").build());
-        }
+        ///}
         player.getInventory().setItem(8, new ItemBuilder(Material.PLAYER_HEAD).setOwner(player.getName()).setName("§7» §aProfil §7«").build());
     }
 
