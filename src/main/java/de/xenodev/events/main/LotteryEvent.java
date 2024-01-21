@@ -73,8 +73,8 @@ public class LotteryEvent implements Listener {
                     LotteryBuilder.openNewPage(player);
                     player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
                 }else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Buy a Ticket")){
-                    if(CoinAPI.getCoins(player.getUniqueId()) >= xLobby.getInstance().getConfig().getInt("Settings.Lotterycost")){
-                        CoinAPI.removeCoins(player.getUniqueId(), xLobby.getInstance().getConfig().getInt("Settings.Lotterycost"));
+                    if(CoinAPI.getCoins(player.getUniqueId()) >= LotteryBuilder.getTicketCost(player)){
+                        CoinAPI.removeCoins(player.getUniqueId(), LotteryBuilder.getTicketCost(player));
                         TicketAPI.addTickets(player.getUniqueId(), 1);
                         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 100f);
                         LotteryBuilder.openNewPage(player);

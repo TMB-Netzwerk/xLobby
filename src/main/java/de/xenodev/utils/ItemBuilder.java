@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -82,6 +83,18 @@ public class ItemBuilder {
         } catch (MalformedURLException e) { throw new RuntimeException(e); }
         playerProfile.setTextures(playerTextures);
         smeta.setOwnerProfile(playerProfile);
+        return this;
+    }
+
+    public ItemBuilder setAuthor(String author){
+        BookMeta bookMeta = (BookMeta) meta;
+        bookMeta.setAuthor(author);
+        return this;
+    }
+
+    public ItemBuilder setTitle(String title){
+        BookMeta bookMeta = (BookMeta) meta;
+        bookMeta.setTitle(title);
         return this;
     }
 

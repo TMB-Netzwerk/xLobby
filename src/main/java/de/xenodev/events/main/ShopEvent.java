@@ -254,7 +254,6 @@ public class ShopEvent implements Listener {
             shopInventory.setItem(10, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
             shopInventory.setItem(19, new ItemBuilder(Material.GREEN_STAINED_GLASS_PANE).build());
             shopInventory.addItem(new ItemBuilder(Material.EMERALD).setName("§7» §6Coins -> Bytes §7«").setLore("§7Wechsle §65000 §7Coins zu §c1 §7Byte").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
-            shopInventory.addItem(new ItemBuilder(Material.PAPER).setName("§7» §6Lottery-Ticket §7«").setLore("§7Kaufe für §6" + xLobby.getInstance().getConfig().getInt("Settings.Lotterycost") + " §7Coins §c1 §7Lottery-Ticket").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
             shopInventory.setItem(36, new ItemBuilder(Material.NETHER_STAR).setName("§7» §7Coins: §6" + amountCoins + " §8| §7Bytes: §6" + amountBytes + " §8| §7Tickets: §6" + amountTickets + " §7«").build());
             if(bytesAmount.containsKey(player)){
                 bytesAmount.remove(player);

@@ -46,7 +46,6 @@ public class LotteryBuilder {
     public static void openNewPage(Player player){
         Inventory inventory = Bukkit.createInventory(player, 9*6, "§8» §6Lottery Page §c" + getCurrentPage(player) + " §8«");
         int totalCoins = CoinAPI.getCoins(player.getUniqueId());
-        int costTicket = xLobby.getInstance().getConfig().getInt("Settings.Lotterycost");
         int totalTickets = TicketAPI.getTickets(player.getUniqueId());
         int maxTicket = getCurrentPage(player) * 35;
         int minTicket = (getCurrentPage(player) - 1) * 35;
@@ -68,11 +67,11 @@ public class LotteryBuilder {
             inventory.setItem(i, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
         }
 
-        for(int i = minTicket; i <= totalTickets; i++){
+        for(int i = minTicket; i < totalTickets; i++){
             inventory.addItem(new ItemBuilder(Material.PAPER).setEnchantment(Enchantment.CHANNELING, i).setName("§2Lottery Ticket").setFlag(ItemFlag.HIDE_ENCHANTS).build());
         }
 
-        inventory.setItem(49, new ItemBuilder(Material.PAPER).setName("§aBuy a Ticket §8(§6" + costTicket + "§8)").setLore("§7» §7Coins: §6" + totalCoins + " §8| §7Tickets: §6" + totalTickets + " §7«").build());
+        inventory.setItem(49, new ItemBuilder(Material.PAPER).setName("§aBuy a Ticket §8(§6" + getTicketCost(player) + "§8)").setLore("§7» §7Coins: §6" + totalCoins + " §8| §7Tickets: §6" + totalTickets + " §7«").build());
         if(totalTickets > maxTicket) {
             inventory.setItem(53, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("291ac432aa40d7e7a687aa85041de636712d4f022632dd5356c880521af2723a").setName("§2Weiter").build());
         }else{
@@ -196,5 +195,13 @@ public class LotteryBuilder {
         arrayList.add(winCoins);
         arrayList.add(winName);
         return arrayList;
+    }
+
+    public static int getTicketCost(Player player){
+        int ticketCost = xLobby.getInstance().getConfig().getInt("Settings.Lotterycost");
+        int currentMoney = CoinAPI.getCoins(player.getUniqueId());
+        double percent = 0.01;
+        int multiMoney = (int) (currentMoney * percent);
+        return ticketCost + multiMoney;
     }
 }
