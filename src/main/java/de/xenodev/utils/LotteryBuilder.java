@@ -73,7 +73,7 @@ public class LotteryBuilder {
 
         inventory.setItem(49, new ItemBuilder(Material.PAPER).setName("§aBuy a Ticket §8(§6" + getTicketCost(player) + "§8)").setLore("§7» §7Coins: §6" + totalCoins + " §8| §7Tickets: §6" + totalTickets + " §7«").build());
         if(totalTickets > maxTicket) {
-            inventory.setItem(53, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("291ac432aa40d7e7a687aa85041de636712d4f022632dd5356c880521af2723a").setName("§2Weiter").build());
+            inventory.setItem(53, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("291ac432aa40d7e7a687aa85041de636712d4f022632dd5356c880521af2723a").setName("§2Weiter").build());
         }else{
             inventory.setItem(53, new ItemBuilder(Material.BARRIER).setName("§4Close").build());
         }
@@ -81,7 +81,7 @@ public class LotteryBuilder {
         if(getCurrentPage(player) == 1){
             inventory.setItem(45, new ItemBuilder(Material.BARRIER).setName("§4Close").build());
         }else{
-            inventory.setItem(45, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("7a2c12cb22918384e0a81c82a1ed99aebdce94b2ec2754800972319b57900afb").setName("§4Zurück").build());
+            inventory.setItem(45, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("7a2c12cb22918384e0a81c82a1ed99aebdce94b2ec2754800972319b57900afb").setName("§4Zurück").build());
         }
 
         player.openInventory(inventory);

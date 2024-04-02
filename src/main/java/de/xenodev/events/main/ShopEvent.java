@@ -117,13 +117,13 @@ public class ShopEvent implements Listener {
                     shopInventory.setItem(i, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
                 }
 
-                shopInventory.setItem(1, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("a99aaf2456a6122de8f6b62683f2bc2eed9abb81fd5bea1b4c23a58156b669").setName("§7Byte §2+1").build());
-                shopInventory.setItem(2, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("7d695d335e6be8cb2a34e05e18ea2d12c3b17b8166ba62d6982a643df71ffac5").setName("§7Byte §2+10").build());
+                shopInventory.setItem(1, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("a99aaf2456a6122de8f6b62683f2bc2eed9abb81fd5bea1b4c23a58156b669").setName("§7Byte §2+1").build());
+                shopInventory.setItem(2, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("7d695d335e6be8cb2a34e05e18ea2d12c3b17b8166ba62d6982a643df71ffac5").setName("§7Byte §2+10").build());
 
-                shopInventory.setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                shopInventory.setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
 
-                shopInventory.setItem(6, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("437862cdc159998ed6b6fdccaaa4675867d4484db512a84c367fabf4caf60").setName("§7Byte §c-10").build());
-                shopInventory.setItem(7, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("3912d45b1c78cc22452723ee66ba2d15777cc288568d6c1b62a545b29c7187").setName("§7Byte §c-1").build());
+                shopInventory.setItem(6, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("437862cdc159998ed6b6fdccaaa4675867d4484db512a84c367fabf4caf60").setName("§7Byte §c-10").build());
+                shopInventory.setItem(7, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("3912d45b1c78cc22452723ee66ba2d15777cc288568d6c1b62a545b29c7187").setName("§7Byte §c-1").build());
 
                 shopInventory.setItem(26, new ItemBuilder(Material.ARROW).setName("§7» §6Zurück §7«").build());
 
@@ -148,18 +148,18 @@ public class ShopEvent implements Listener {
                 if(bytesAmount.get(player) >= 2) {
                     bytesAmount.replace(player, bytesAmount.get(player), bytesAmount.get(player) - 1);
                 }
-                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Byte §2+1")){
                 bytesAmount.replace(player, bytesAmount.get(player), bytesAmount.get(player) + 1);
-                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Byte §c-10")){
                 if(bytesAmount.get(player) >= 11){
                     bytesAmount.replace(player, bytesAmount.get(player), bytesAmount.get(player) - 10);
                 }
-                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Byte §2+10")){
                 bytesAmount.replace(player, bytesAmount.get(player), bytesAmount.get(player) + 10);
-                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
+                event.getInventory().setItem(4, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("2e2cc42015e6678f8fd49ccc01fbf787f1ba2c32bcf559a015332fc5db50").setName("§6Coins wechseln").setLore("§7Wechsle §6" + 5000*bytesAmount.get(player) + " §7Coins zu §c" + 1*bytesAmount.get(player) + " §7Byte").build());
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6Coins wechseln")){
                 checkBuy(player, "bytes", 5000, "coins", bytesAmount.get(player));
                 checkInventory(player, "extras");

@@ -49,19 +49,19 @@ public class CalendarEvent implements Listener {
                     }
                     if(day.format(now).equals(stringDay)){
                         if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
                         }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }else {
                         if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
                             if (Integer.valueOf(day.format(now)) > days) {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
                             } else {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
                             }
                         }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }
                 }
@@ -76,19 +76,19 @@ public class CalendarEvent implements Listener {
                     }
                     if(day.format(now).equals(stringDay)){
                         if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
                         }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }else {
                         if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
                             if (Integer.valueOf(day.format(now)) > days) {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
                             } else {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
                             }
                         }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }
                 }
@@ -103,19 +103,19 @@ public class CalendarEvent implements Listener {
                     }
                     if(day.format(now).equals(stringDay)){
                         if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
                         }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }else {
                         if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
                             if (Integer.valueOf(day.format(now)) > days) {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
                             } else {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
                             }
                         }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }
                 }
@@ -130,19 +130,19 @@ public class CalendarEvent implements Listener {
                     }
                     if(day.format(now).equals(stringDay)){
                         if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
                         }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }else {
                         if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
                             if (Integer.valueOf(day.format(now)) > days) {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
                             } else {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
                             }
                         }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setOwnerURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }
                 }
@@ -164,8 +164,8 @@ public class CalendarEvent implements Listener {
             event.setCancelled(true);
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
-            if(!month.format(now).equals("01")){
-                player.sendMessage(xLobby.getPrefix() + "§cDer Adventskalender ist verschoben auf Januar");
+            if(!month.format(now).equals("12")){
+                player.sendMessage(xLobby.getPrefix() + "§cDer Adventskalender ist erst wieder im Dezember aktiviert");
                 player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_AMBIENT, 100, 1f);
                 return;
             }

@@ -68,19 +68,29 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder setOwner(String name) {
+    public ItemBuilder setHeadByName(String name) {
         SkullMeta smeta = (SkullMeta) meta;
         smeta.setOwningPlayer(Bukkit.getPlayerExact(name));
         return this;
     }
 
-    public ItemBuilder setOwnerURL(String url){
+    public ItemBuilder setHeadByURL(String url){
         SkullMeta smeta = (SkullMeta) meta;
         PlayerProfile playerProfile = Bukkit.createPlayerProfile(UUID.randomUUID());
         PlayerTextures playerTextures = playerProfile.getTextures();
         try {
             playerTextures.setSkin(new URL("http://textures.minecraft.net/texture/" + url));
         } catch (MalformedURLException e) { throw new RuntimeException(e); }
+        playerProfile.setTextures(playerTextures);
+        smeta.setOwnerProfile(playerProfile);
+        return this;
+    }
+
+    public ItemBuilder setHeadByUUID(UUID uuid){
+        SkullMeta smeta = (SkullMeta) meta;
+        PlayerProfile playerProfile = Bukkit.createPlayerProfile(uuid);
+        PlayerTextures playerTextures = playerProfile.getTextures();
+        playerTextures.setSkin(playerProfile.getTextures().getSkin());
         playerProfile.setTextures(playerTextures);
         smeta.setOwnerProfile(playerProfile);
         return this;
