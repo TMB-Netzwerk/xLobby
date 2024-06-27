@@ -5,6 +5,7 @@ import de.xenodev.utils.BoardBuilder;
 import de.xenodev.utils.ItemBuilder;
 import de.xenodev.utils.LocationBuilder;
 import de.xenodev.utils.MusicBuilder;
+import de.xenodev.xLobby;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -80,20 +81,26 @@ public class JoinEvent implements Listener {
         }
 
         player.getInventory().clear();
-        player.getInventory().setItem(0, new ItemBuilder(Material.COMPASS).setName("§7» §6Navigator §7«").build());
 
         if(SettingAPI.getSetting(player.getUniqueId(), "enterhaken").equals("true")){
-            player.getInventory().setItem(1, new ItemBuilder(Material.FISHING_ROD).setName("§7» §9Enterhaken §7«").setUnbreakable().build());
+            player.getInventory().setItem(0, new ItemBuilder(Material.FISHING_ROD).setName("§7» §9Enterhaken §7«").setUnbreakable().build());
         }else if(SettingAPI.getSetting(player.getUniqueId(), "flugstab").equals("true")){
-            player.getInventory().setItem(1, new ItemBuilder(Material.BLAZE_ROD).setName("§7» §9Flugstab §7«").build());
+            player.getInventory().setItem(0, new ItemBuilder(Material.BLAZE_ROD).setName("§7» §9Flugstab §7«").build());
         }else if(SettingAPI.getSetting(player.getUniqueId(), "eggbomb").equals("true")){
-            player.getInventory().setItem(1, new ItemBuilder(Material.EGG).setName("§7» §9Eggbomb §7«").build());
+            player.getInventory().setItem(0, new ItemBuilder(Material.EGG).setName("§7» §9Eggbomb §7«").build());
         }else if(SettingAPI.getSetting(player.getUniqueId(), "enderperl").equals("true")){
-            player.getInventory().setItem(1, new ItemBuilder(Material.ENDER_PEARL).setName("§7» §9Enderperle §7«").build());
+            player.getInventory().setItem(0, new ItemBuilder(Material.ENDER_PEARL).setName("§7» §9Enderperle §7«").build());
         }else if(SettingAPI.getSetting(player.getUniqueId(), "switchbow").equals("true")){
-            player.getInventory().setItem(1, new ItemBuilder(Material.BOW).setName("§7» §9Switch Bow §7«").build());
+            player.getInventory().setItem(0, new ItemBuilder(Material.BOW).setName("§7» §9Switch Bow §7«").build());
         }else if(SettingAPI.getSetting(player.getUniqueId(), "switchbow").equals("false") && SettingAPI.getSetting(player.getUniqueId(), "enderperl").equals("false") && SettingAPI.getSetting(player.getUniqueId(), "eggbomb").equals("false") && SettingAPI.getSetting(player.getUniqueId(), "flugstab").equals("false") && SettingAPI.getSetting(player.getUniqueId(), "enterhaken").equals("false")){
-            player.getInventory().setItem(1, new ItemBuilder(Material.BARRIER).setName("§7» §4Kein Gadget ausgewählt §7«").build());
+            player.getInventory().setItem(0, new ItemBuilder(Material.BARRIER).setName("§7» §4Kein Gadget ausgewählt §7«").build());
+        }
+
+        if(xLobby.xLobbyModule_Games){
+            player.getInventory().setItem(3, new ItemBuilder(Material.NETHER_STAR).setName("§7» §eLobby Games §7«").build());
+            player.getInventory().setItem(5, new ItemBuilder(Material.COMPASS).setName("§7» §6Navigator §7«").build());
+        }else{
+            player.getInventory().setItem(4, new ItemBuilder(Material.COMPASS).setName("§7» §6Navigator §7«").build());
         }
 
         if(EventAPI.getEvent().equalsIgnoreCase("Christmas")){

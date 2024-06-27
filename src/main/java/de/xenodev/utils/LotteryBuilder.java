@@ -198,10 +198,6 @@ public class LotteryBuilder {
     }
 
     public static int getTicketCost(Player player){
-        int ticketCost = xLobby.getInstance().getConfig().getInt("Settings.Lotterycost");
-        int currentMoney = CoinAPI.getCoins(player.getUniqueId());
-        double percent = 0.01;
-        int multiMoney = (int) (currentMoney * percent);
-        return ticketCost + multiMoney;
+        return xLobby.getInstance().getConfig().getInt("Settings.Lotterycost");
     }
 }

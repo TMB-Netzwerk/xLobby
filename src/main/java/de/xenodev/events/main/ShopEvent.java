@@ -208,14 +208,8 @@ public class ShopEvent implements Listener {
                 shopInventory.addItem(new ItemBuilder(Material.BLAZE_ROD).setName("§7» §6Flugstab §7«").setLore("§7Der §6Flugstab §7kostet §c50 §7Bytes").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
             }
             if(EventAPI.getEvent().equalsIgnoreCase("Easter")) {
-                if (BuyAPI.getBuy(player.getUniqueId(), "eggbomb").equals("false")) {
-                    shopInventory.addItem(new ItemBuilder(Material.EGG).setName("§7» §6Eggbomb §7«").setLore("§7Die §6Eggbomb §7kostet §c130 §7Bytes", "", "§oGadget von Ostern 2021").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
-                }
             }
             if(EventAPI.getEvent().equalsIgnoreCase("Christmas")) {
-                if (BuyAPI.getBuy(player.getUniqueId(), "switchbow").equals("false")) {
-                    shopInventory.addItem(new ItemBuilder(Material.BOW).setName("§7» §6Switch Bow §7«").setLore("§7Der §6Switch Bow §7kostet §c130 §7Bytes", "", "§oGadget von Weihnachten 2021").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
-                }
             }
             shopInventory.setItem(36, new ItemBuilder(Material.NETHER_STAR).setName("§7» §7Coins: §6" + amountCoins + " §8| §7Bytes: §6" + amountBytes + " §8| §7Tickets: §6" + amountTickets + " §7«").build());
         }else if(shopName.equalsIgnoreCase("spuren")){
@@ -233,19 +227,10 @@ public class ShopEvent implements Listener {
                 shopInventory.addItem(new ItemBuilder(Material.LEATHER_BOOTS).setName("§7» §6Flame-Trail §7«").setLore("§7Die §6Flame-Trail §7kosten §c30 §7Bytes").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).setFlag(ItemFlag.HIDE_ATTRIBUTES).setColor(Color.ORANGE).build());
             }
             if(EventAPI.getEvent().equalsIgnoreCase("Easter")) {
-                if (BuyAPI.getBuy(player.getUniqueId(), "colortrail").equals("false")) {
-                    shopInventory.addItem(new ItemBuilder(Material.LEATHER_BOOTS).setName("§7» §6Color-Trail §7«").setLore("§7Die §6Color-Trail §7kosten §c75 §7Bytes", "", "§oTrail von Ostern 2022").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).setFlag(ItemFlag.HIDE_ATTRIBUTES).setColor(Color.YELLOW).build());
-                }
             }
             if(EventAPI.getEvent().equalsIgnoreCase("Halloween")) {
-                if (BuyAPI.getBuy(player.getUniqueId(), "ghosttrail").equals("false")) {
-                    shopInventory.addItem(new ItemBuilder(Material.LEATHER_BOOTS).setName("§7» §6Ghost-Trail §7«").setLore("§7Die §6Ghost-Trail §7kosten §c90 §7Bytes", "", "§oTrail von Halloween 2022").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).setFlag(ItemFlag.HIDE_ATTRIBUTES).setColor(Color.RED).build());
-                }
             }
             if(EventAPI.getEvent().equalsIgnoreCase("Christmas")) {
-                if (BuyAPI.getBuy(player.getUniqueId(), "christmastrail").equals("false")) {
-                    shopInventory.addItem(new ItemBuilder(Material.LEATHER_BOOTS).setName("§7» §6Christmas-Trail §7«").setLore("§7Die §6Christmas-Trail §7kosten §c99999 §7Bytes", "", "§oTrail von Weihnachten 2023").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).setFlag(ItemFlag.HIDE_ATTRIBUTES).setColor(Color.WHITE).build());
-                }
             }
             shopInventory.setItem(36, new ItemBuilder(Material.NETHER_STAR).setName("§7» §7Coins: §6" + amountCoins + " §8| §7Bytes: §6" + amountBytes + " §8| §7Tickets: §6" + amountTickets + " §7«").build());
         }else if(shopName.equalsIgnoreCase("extras")){

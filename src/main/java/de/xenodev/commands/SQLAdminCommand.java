@@ -155,7 +155,7 @@ public class SQLAdminCommand implements CommandExecutor, TabCompleter, Listener 
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")) {
                 player.closeInventory();
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 1f);
-            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Switchbow" + " §7«")){
+            }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6" + "Switch Bow" + " §7«")){
                 if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Switchbow").equals("false")) {
                     BuyAPI.setBuy(offlinePlayer.getUniqueId(), "Switchbow", "true");
                 } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Switchbow").equals("true")) {
@@ -318,14 +318,14 @@ public class SQLAdminCommand implements CommandExecutor, TabCompleter, Listener 
             inventory.setItem(8, new ItemBuilder(Material.SLIME_BALL).setName("§7» §6" + "Eggbomb" + " §7«").setLore("", "§7Gadget §cnicht gekauft").build());
         }
         if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Switchbow").equals("true")) {
-            inventory.setItem(9, new ItemBuilder(Material.MAGMA_CREAM).setName("§7» §6" + "Switchbow" + " §7«").setLore("", "§7Gadget §2gekauft").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
+            inventory.setItem(9, new ItemBuilder(Material.MAGMA_CREAM).setName("§7» §6" + "Switch Bow" + " §7«").setLore("", "§7Gadget §2gekauft").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
         } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Switchbow").equals("false")) {
-            inventory.setItem(9, new ItemBuilder(Material.SLIME_BALL).setName("§7» §6" + "Switchbow" + " §7«").setLore("", "§7Gadget §cnicht gekauft").build());
+            inventory.setItem(9, new ItemBuilder(Material.SLIME_BALL).setName("§7» §6" + "Switch Bow" + " §7«").setLore("", "§7Gadget §cnicht gekauft").build());
         }
         if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Christmastrail").equals("true")) {
-            inventory.setItem(9, new ItemBuilder(Material.MAGMA_CREAM).setName("§7» §6" + "Christmastrail" + " §7«").setLore("", "§7Gadget §2gekauft").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
+            inventory.setItem(10, new ItemBuilder(Material.MAGMA_CREAM).setName("§7» §6" + "Christmastrail" + " §7«").setLore("", "§7Gadget §2gekauft").setEnchantment(Enchantment.CHANNELING, 1).setFlag(ItemFlag.HIDE_ENCHANTS).build());
         } else if (BuyAPI.getBuy(offlinePlayer.getUniqueId(), "Christmastrail").equals("false")) {
-            inventory.setItem(9, new ItemBuilder(Material.SLIME_BALL).setName("§7» §6" + "Christmastrail" + " §7«").setLore("", "§7Gadget §cnicht gekauft").build());
+            inventory.setItem(10, new ItemBuilder(Material.SLIME_BALL).setName("§7» §6" + "Christmastrail" + " §7«").setLore("", "§7Gadget §cnicht gekauft").build());
         }
 
         inventory.setItem(26, new ItemBuilder(Material.BARRIER).setName("§7» §6Zurück §7«").build());

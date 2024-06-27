@@ -40,13 +40,12 @@ public class DefaultChangesEvent implements Listener {
 
     @EventHandler
     public void handleDamageByEntity(EntityDamageByEntityEvent event){
-        if(event.getDamager() instanceof Player && event.getEntity() instanceof Player){
-            event.setCancelled(true);
+        if(xLobby.xLobbyModule_Games) {
+            if(event.getDamager() instanceof Player && event.getEntity() instanceof Player){
+                event.setCancelled(true);
+            }
         }
         if(event.getDamager() instanceof  Player && event.getEntity() instanceof Painting){
-            event.setCancelled(true);
-        }
-        if(event.getDamager() instanceof  Player && event.getEntity() instanceof Minecart){
             event.setCancelled(true);
         }
         if(event.getDamager() instanceof  Player && event.getEntity() instanceof Minecart){
@@ -56,24 +55,14 @@ public class DefaultChangesEvent implements Listener {
 
     @EventHandler
     public void handleEntityDamage(EntityDamageEvent event){
-        if(event.getEntity() instanceof Player || event.getEntity() instanceof ItemFrame || event.getEntity() instanceof ArmorStand){
-            event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void handlePlayerDeath(PlayerDeathEvent event){
-        if(event.getEntity() instanceof Player){
-            Player player = event.getEntity();
-            event.setDeathMessage("");
-            if(!LocationBuilder.existsLocation("Spawn")){
-                player.sendMessage(xLobby.getPrefix() + " §7Der Spawn wurde noch nicht gesetzt! Kontaktiere bitte einen Administator");
-                return;
+        if(xLobby.xLobbyModule_Games) {
+            if (event.getEntity() instanceof ItemFrame || event.getEntity() instanceof ArmorStand) {
+                event.setCancelled(true);
             }
-
-            player.spigot().respawn();
-            Location locationSpawn = LocationBuilder.getLocation("Spawn");
-            player.teleport(locationSpawn);
+        }else{
+            if (event.getEntity() instanceof Player || event.getEntity() instanceof ItemFrame || event.getEntity() instanceof ArmorStand) {
+                event.setCancelled(true);
+            }
         }
     }
 
@@ -152,8 +141,10 @@ public class DefaultChangesEvent implements Listener {
 
     @EventHandler
     public void handleExplotions(EntityExplodeEvent event){
-        event.blockList().clear();
-        event.setCancelled(true);
+        if(event.getEntityType().equals(EntityType.MINECART_TNT)) {
+            event.blockList().clear();
+            event.setCancelled(true);
+        }
     }
 
 }

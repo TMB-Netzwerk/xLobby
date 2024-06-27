@@ -21,10 +21,6 @@ import java.util.HashMap;
 
 public class EnderperleEvent implements Listener {
 
-    private ArrayList<Player> cooldownArray = new ArrayList<>();
-    private HashMap<Player, Integer> cooldownInt = new HashMap<>();
-    private BukkitTask cooldownID;
-
     @EventHandler
     public void onSpawn(CreatureSpawnEvent event) {
         if (event.getEntity() instanceof Endermite) {

@@ -33,7 +33,7 @@ public class EggBombEvent implements Listener {
                     event.setCancelled(true);
 
                     if (!CooldownBuilder.eggbombCooldown.containsKey(player)) {
-                        CooldownBuilder.eggbombCooldown.put(player, 5);
+                        CooldownBuilder.eggbombCooldown.put(player, 3);
                         player.launchProjectile(Egg.class);
                         player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1f, 1f);
                     }else{
@@ -51,30 +51,25 @@ public class EggBombEvent implements Listener {
             Player player = (Player) event.getEntity().getShooter();
             if(event.getEntity() instanceof Egg){
                 Egg egg = (Egg) event.getEntity();
-                for(Entity entity : egg.getNearbyEntities(5.0D, 5.0D, 5.0D)){
-                    arrayList.add((Player) entity);
-                    for(Player players : arrayList){
-                        if (SettingAPI.getSetting(players.getUniqueId(), "Eggboost_other").equals("true")) {
-                            players.playSound(egg.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1f, 1f);
-                            Vector v = players.getVelocity();
-                            v.setX(players.getLocation().getDirection().multiply(4).getX());
-                            v.setY(2);
-                            v.setZ(players.getLocation().getDirection().multiply(4).getZ());
-                            players.setVelocity(v);
-                            arrayList.remove(players);
-                        }
-                        if(player == players){
-                            if (SettingAPI.getSetting(player.getUniqueId(), "Eggboost_self").equals("true")) {
-                                player.playSound(egg.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1f, 1f);
-                                player.playEffect(egg.getLocation(), Effect.EXTINGUISH, 100);
-                                Vector v = player.getVelocity();
-                                v.setX(player.getLocation().getDirection().multiply(4).getX());
-                                v.setY(2);
-                                v.setZ(player.getLocation().getDirection().multiply(4).getZ());
-                                player.setVelocity(v);
-                                arrayList.remove(player);
-                            }
-                        }
+                for(Entity entity : egg.getNearbyEntities(5.0D, 7.0D, 5.0D)){
+                    Player target = (Player) entity;
+                    if (SettingAPI.getSetting(target.getUniqueId(), "Eggboost_other").equals("true")) {
+                        target.playSound(egg.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1f, 1f);
+                        target.playEffect(egg.getLocation(), Effect.EXTINGUISH, 100);
+                        Vector v = target.getVelocity();
+                        v.setX(target.getLocation().getDirection().multiply(4).getX());
+                        v.setY(2);
+                        v.setZ(target.getLocation().getDirection().multiply(4).getZ());
+                        target.setVelocity(v);
+                    }
+                    if (SettingAPI.getSetting(player.getUniqueId(), "Eggboost_self").equals("true")) {
+                        target.playSound(egg.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1f, 1f);
+                        target.playEffect(egg.getLocation(), Effect.EXTINGUISH, 100);
+                        Vector v = target.getVelocity();
+                        v.setX(target.getLocation().getDirection().multiply(4).getX());
+                        v.setY(2);
+                        v.setZ(target.getLocation().getDirection().multiply(4).getZ());
+                        target.setVelocity(v);
                     }
                 }
             }

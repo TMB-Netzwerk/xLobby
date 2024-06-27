@@ -21,20 +21,16 @@ public class BoardBuilder {
 
     private static Integer displayID = 0;
 
-    private static PermissionManagement permissionManagement = InjectionLayer.ext().instance(PermissionManagement.class);
-
     public static void createBoard(Player player){
-        Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        var manager = player.getServer().getScoreboardManager();
+        if (manager != null && player.getScoreboard().equals(manager.getMainScoreboard())) {
+            player.setScoreboard(manager.getNewScoreboard());
+        }
+        Scoreboard scoreboard = player.getScoreboard();
         Objective objective = scoreboard.registerNewObjective("main", "main", "§3§lT§beamMegaByte");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-        PermissionUser permissionUser = permissionManagement.user(player.getUniqueId());
-        PermissionGroup permissionGroup = permissionManagement.highestPermissionGroup(permissionUser);
-
-        objective.getScore("§5§o").setScore(15);
-        objective.getScore("§7» §fDein Rang").setScore(14);
-        objective.getScore(updateTeam(scoreboard, "rang", permissionGroup.display().replace("&", "§") + permissionGroup.name(), "", ChatColor.BLUE)).setScore(13);
-        objective.getScore("§1§o").setScore(12);
+        objective.getScore("§5§o").setScore(12);
         objective.getScore("§7» §fDeine Zeit").setScore(11);
         objective.getScore(updateTeam(scoreboard, "time", "§2§l" + TimeAPI.changeTime(player.getUniqueId()), "", ChatColor.GREEN)).setScore(10);
         objective.getScore("§9§o").setScore(9);
@@ -46,8 +42,6 @@ public class BoardBuilder {
         objective.getScore("§7§o").setScore(3);
         objective.getScore("§7» §fUnsere Website").setScore(2);
         objective.getScore("§d§lclan-tmb.de").setScore(1);
-
-        player.setScoreboard(scoreboard);
     }
 
     public static void updateScoreboard() {
@@ -59,10 +53,6 @@ public class BoardBuilder {
                     Scoreboard scoreboard = players.getScoreboard();
                     Objective objective = scoreboard.getObjective("main");
 
-                    PermissionUser permissionUser = permissionManagement.user(players.getUniqueId());
-                    PermissionGroup permissionGroup = permissionManagement.highestPermissionGroup(permissionUser);
-
-                    objective.getScore(updateTeam(scoreboard, "rang", permissionGroup.display().replace("&", "§") + permissionGroup.name(), "", ChatColor.BLUE)).setScore(13);
                     objective.getScore(updateTeam(scoreboard, "time", "§2§l" + TimeAPI.changeTime(players.getUniqueId()), "", ChatColor.GREEN)).setScore(10);
                     objective.getScore(updateTeam(scoreboard, "bytes", "§6§l" + BytesAPI.getBytes(players.getUniqueId()), "", ChatColor.GOLD)).setScore(7);
                     objective.getScore(updateTeam(scoreboard, "coins", "§e§l" + CoinAPI.getCoins(players.getUniqueId()), "", ChatColor.YELLOW)).setScore(4);

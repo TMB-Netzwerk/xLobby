@@ -7,10 +7,7 @@ import com.github.fierioziy.particlenativeapi.api.particle.ParticleList_1_8;
 import com.github.fierioziy.particlenativeapi.core.ParticleNativeCore;
 import com.github.fierioziy.particlenativeapi.plugin.ParticleNativePlugin;
 import de.xenodev.commands.*;
-import de.xenodev.events.DefaultChangesEvent;
-import de.xenodev.events.DoubleJumpEvent;
-import de.xenodev.events.JoinEvent;
-import de.xenodev.events.QuitEvent;
+import de.xenodev.events.*;
 import de.xenodev.events.gadget.EnderperleEvent;
 import de.xenodev.events.gadget.EnterhakenEvent;
 import de.xenodev.events.gadget.FlugstabEvent;
@@ -39,6 +36,8 @@ public class xLobby extends JavaPlugin {
     private static xLobby instance;
     private static MySQL mySQL;
 
+    public static boolean xLobbyModule_Games = false;
+
     public static ParticleList_1_8 list18;
     public static ParticleList_1_13 list113;
     public static ParticleList_1_19_Part list119;
@@ -55,11 +54,19 @@ public class xLobby extends JavaPlugin {
         checkParticleAPI();
         checkNoteBlockAPI();
 
+        if(xLobby.getInstance().getServer().getPluginManager().getPlugin("xLobbyGames") != null){
+            xLobbyModule_Games = true;
+            getLogger().log(Level.SEVERE, "Das xLobbyGames-Module wurde gefunden und initialisiert.");
+        }else{
+            xLobbyModule_Games = false;
+            getLogger().log(Level.SEVERE, "Das xLobbyGames-Module wurde nicht gefunden.");
+        }
+
         init(Bukkit.getPluginManager());
 
         BoardBuilder.updateScoreboard();
         CooldownBuilder.handlePlayerCooldown();
-        CooldownBuilder.handleTrailCooldown();
+        CooldownBuilder.handleBorderCheck();
         if(EventAPI.getEvent().equalsIgnoreCase("Christmas")) {
             new StarterpackHandler();
         }

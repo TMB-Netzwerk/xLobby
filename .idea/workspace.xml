@@ -4,7 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c959c503-12f7-4409-9af5-5b452353ff11" name="Changes" comment="xLobby first upload (UPDATE 1.5)" />
+    <list default="true" id="c959c503-12f7-4409-9af5-5b452353ff11" name="Changes" comment="xLobby first upload (UPDATE 1.5)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/commands/SQLAdminCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/commands/SQLAdminCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/DefaultChangesEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/DefaultChangesEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/JoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/JoinEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/gadget/EnderperleEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/gadget/EnderperleEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/gadget/special/EggBombEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/gadget/special/EggBombEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/gadget/special/SwitchBow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/gadget/special/SwitchBow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/GadgetEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/GadgetEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/NavigatorEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/NavigatorEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/ShopEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/ShopEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/TrailEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/TrailEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/BoardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/BoardBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/CooldownBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/CooldownBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/LotteryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/LotteryBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/xLobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/xLobby.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/commands/SQLAdminCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/commands/SQLAdminCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/DefaultChangesEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/DefaultChangesEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/JoinEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/JoinEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/gadget/EnderperleEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/gadget/EnderperleEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/gadget/special/EggBombEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/gadget/special/EggBombEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/gadget/special/SwitchBow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/gadget/special/SwitchBow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/GadgetEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/GadgetEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/NavigatorEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/NavigatorEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/ShopEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/ShopEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/TrailEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/TrailEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/LotteryBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/LotteryBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/xLobby.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/xLobby.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-xLobby-2.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-xLobby-2.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xLobby-2.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/xLobby-2.1-SNAPSHOT.jar" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +63,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/pom.xml" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/de/xenodev/utils/CooldownBuilder.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/de/xenodev/utils/ItemBuilder.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/de/xenodev/utils/MusicBuilder.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/de/xenodev/xLobby.java" root0="SKIP_INSPECTION" />
@@ -41,10 +83,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Maven.xLobby [package].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Rodne/IdeaProjects/PalWorld-NetCrack",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Rodne/IdeaProjects/TeamMegaByte/xLobby",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",

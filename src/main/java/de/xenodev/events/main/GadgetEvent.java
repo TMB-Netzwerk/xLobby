@@ -67,7 +67,7 @@ public class GadgetEvent implements Listener {
                 SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
-                player.getInventory().setItem(1, new ItemBuilder(Material.BARRIER).setName("§7» §4Kein Gadget ausgewählt §7«").build());
+                player.getInventory().setItem(0, new ItemBuilder(Material.BARRIER).setName("§7» §4Kein Gadget ausgewählt §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 100, 1f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")) {
                 player.closeInventory();
@@ -90,7 +90,7 @@ public class GadgetEvent implements Listener {
                 SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
-                player.getInventory().setItem(1, new ItemBuilder(Material.FISHING_ROD).setName("§7» §9Enterhaken §7«").setUnbreakable().build());
+                player.getInventory().setItem(0, new ItemBuilder(Material.FISHING_ROD).setName("§7» §9Enterhaken §7«").setUnbreakable().build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Flugstab §7«")){
                 SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "false");
@@ -98,7 +98,7 @@ public class GadgetEvent implements Listener {
                 SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
-                player.getInventory().setItem(1, new ItemBuilder(Material.BLAZE_ROD).setName("§7» §9Flugstab §7«").build());
+                player.getInventory().setItem(0, new ItemBuilder(Material.BLAZE_ROD).setName("§7» §9Flugstab §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Eggbomb §7«")){
                 SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "false");
@@ -106,7 +106,7 @@ public class GadgetEvent implements Listener {
                 SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "true");
                 SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
-                player.getInventory().setItem(1, new ItemBuilder(Material.EGG).setName("§7» §9Eggbomb §7«").build());
+                player.getInventory().setItem(0, new ItemBuilder(Material.EGG).setName("§7» §9Eggbomb §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Enderperle §7«")){
                 SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "false");
@@ -114,7 +114,7 @@ public class GadgetEvent implements Listener {
                 SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "enderperl", "true");
                 SettingAPI.setSetting(player.getUniqueId(), "switchbow", "false");
-                player.getInventory().setItem(1, new ItemBuilder(Material.ENDER_PEARL).setName("§7» §9Enderperle §7«").build());
+                player.getInventory().setItem(0, new ItemBuilder(Material.ENDER_PEARL).setName("§7» §9Enderperle §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Switch Bow §7«")){
                 SettingAPI.setSetting(player.getUniqueId(), "enterhaken", "false");
@@ -122,7 +122,7 @@ public class GadgetEvent implements Listener {
                 SettingAPI.setSetting(player.getUniqueId(), "eggbomb", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "enderperl", "false");
                 SettingAPI.setSetting(player.getUniqueId(), "switchbow", "true");
-                player.getInventory().setItem(1, new ItemBuilder(Material.BOW).setName("§7» §9Switch Bow §7«").build());
+                player.getInventory().setItem(0, new ItemBuilder(Material.BOW).setName("§7» §9Switch Bow §7«").build());
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
             }
         }
