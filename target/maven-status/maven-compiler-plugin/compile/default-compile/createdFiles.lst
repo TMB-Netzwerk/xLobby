@@ -3,13 +3,14 @@ de\xenodev\utils\snow\FlakesHandler$1.class
 de\xenodev\events\DoubleJumpEvent.class
 de\xenodev\commands\TestCommand.class
 de\xenodev\mysql\SettingAPI.class
-de\xenodev\events\main\ShopEvent.class
 de\xenodev\mysql\EventAPI.class
 de\xenodev\utils\CooldownBuilder.class
 de\xenodev\utils\BoardBuilder.class
 de\xenodev\utils\LocationBuilder.class
+de\xenodev\events\shop\ShopEvent.class
 de\xenodev\utils\CooldownBuilder$2.class
 de\xenodev\utils\ItemBuilder.class
+de\xenodev\events\shop\ShopGUI.class
 de\xenodev\mysql\CalendarAPI.class
 de\xenodev\utils\BoardBuilder$2.class
 de\xenodev\events\main\NavigatorEvent.class
@@ -26,6 +27,7 @@ de\xenodev\utils\CooldownBuilder$1.class
 de\xenodev\events\gadget\FlugstabEvent.class
 de\xenodev\events\main\SettingsEvent.class
 de\xenodev\commands\SQLAdminCommand.class
+de\xenodev\mysql\PlayersAPI.class
 de\xenodev\utils\RedeemBuilder.class
 de\xenodev\events\gadget\EnderperleEvent.class
 de\xenodev\events\main\LotteryEvent.class

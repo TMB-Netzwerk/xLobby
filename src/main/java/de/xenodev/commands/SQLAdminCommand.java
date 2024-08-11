@@ -150,8 +150,8 @@ public class SQLAdminCommand implements CommandExecutor, TabCompleter, Listener 
         if(event.getView().getTitle().equalsIgnoreCase("§7» §6Gadgets von §5" + getName(player) + " §7«")) {
             OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(getName(player));
             event.setCancelled(true);
-            if (event.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE) || event.getCurrentItem().getType().equals(Material.AIR) || event.getCurrentItem() == null)
-                return;
+            if(event.getCurrentItem() == null) return;
+            if (event.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE) || event.getCurrentItem().getType().equals(Material.AIR)) return;
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")) {
                 player.closeInventory();
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 1f);

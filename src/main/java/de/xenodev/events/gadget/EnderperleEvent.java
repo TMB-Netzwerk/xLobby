@@ -1,23 +1,15 @@
 package de.xenodev.events.gadget;
 
 import de.xenodev.utils.CooldownBuilder;
-import de.xenodev.utils.ItemBuilder;
 import de.xenodev.xLobby;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.EntityDismountEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
-import org.spigotmc.event.entity.EntityDismountEvent;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class EnderperleEvent implements Listener {
 

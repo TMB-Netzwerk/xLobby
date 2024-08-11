@@ -141,7 +141,7 @@ public class DefaultChangesEvent implements Listener {
 
     @EventHandler
     public void handleExplotions(EntityExplodeEvent event){
-        if(event.getEntityType().equals(EntityType.MINECART_TNT)) {
+        if(event.getEntityType().equals(EntityType.TNT_MINECART)) {
             event.blockList().clear();
             event.setCancelled(true);
         }

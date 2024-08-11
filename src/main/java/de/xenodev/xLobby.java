@@ -14,6 +14,7 @@ import de.xenodev.events.gadget.FlugstabEvent;
 import de.xenodev.events.gadget.special.EggBombEvent;
 import de.xenodev.events.gadget.special.SwitchBow;
 import de.xenodev.events.main.*;
+import de.xenodev.events.shop.ShopEvent;
 import de.xenodev.mysql.EventAPI;
 import de.xenodev.mysql.LotteryAPI;
 import de.xenodev.mysql.MySQL;
@@ -56,7 +57,7 @@ public class xLobby extends JavaPlugin {
 
         if(xLobby.getInstance().getServer().getPluginManager().getPlugin("xLobbyGames") != null){
             xLobbyModule_Games = true;
-            getLogger().log(Level.SEVERE, "Das xLobbyGames-Module wurde gefunden und initialisiert.");
+            getLogger().log(Level.INFO, "Das xLobbyGames-Module wurde gefunden und initialisiert.");
         }else{
             xLobbyModule_Games = false;
             getLogger().log(Level.SEVERE, "Das xLobbyGames-Module wurde nicht gefunden.");
@@ -144,6 +145,8 @@ public class xLobby extends JavaPlugin {
             PreparedStatement preparedStatement9 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Setting(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),eggboost_self VARCHAR(5),eggboost_other VARCHAR(5),hide VARCHAR(5),snowfall VARCHAR(5), traileffect VARCHAR(5),christmastrail VARCHAR(5))");
             PreparedStatement preparedStatement10 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Buy(UUID VARCHAR(100),enterhaken VARCHAR(5),flugstab VARCHAR(5),eggbomb VARCHAR(5),enderperl VARCHAR(5),switchbow VARCHAR(5),notetrail VARCHAR(5),hearttrail VARCHAR(5),ghosttrail VARCHAR(5),flametrail VARCHAR(5),colortrail VARCHAR(5),christmastrail VARCHAR(5))");
             PreparedStatement preparedStatement11 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Calendar(UUID VARCHAR(100),day1 VARCHAR(5),day2 VARCHAR(5),day3 VARCHAR(5),day4 VARCHAR(5),day5 VARCHAR(5),day6 VARCHAR(5),day7 VARCHAR(5),day8 VARCHAR(5),day9 VARCHAR(5),day10 VARCHAR(5),day11 VARCHAR(5),day12 VARCHAR(5),day13 VARCHAR(5),day14 VARCHAR(5),day15 VARCHAR(5),day16 VARCHAR(5),day17 VARCHAR(5),day18 VARCHAR(5),day19 VARCHAR(5),day20 VARCHAR(5),day21 VARCHAR(5),day22 VARCHAR(5),day23 VARCHAR(5),day24 VARCHAR(5))");
+            PreparedStatement preparedStatement12 = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Players(UUID VARCHAR(100),COLOR VARCHAR(25))");
+
             preparedStatement1.execute();
             preparedStatement2.execute();
             preparedStatement3.execute();
@@ -155,6 +158,7 @@ public class xLobby extends JavaPlugin {
             preparedStatement9.execute();
             preparedStatement10.execute();
             preparedStatement11.execute();
+            preparedStatement12.execute();
 
             preparedStatement1.close();
             preparedStatement2.close();
@@ -167,6 +171,7 @@ public class xLobby extends JavaPlugin {
             preparedStatement9.close();
             preparedStatement10.close();
             preparedStatement11.close();
+            preparedStatement12.close();
         }catch(SQLException ex){
             ex.printStackTrace();
         }

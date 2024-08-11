@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -74,16 +75,16 @@ public class TrailEvent implements Listener {
                 player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_DESTROY, 100, 1f);
             }else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")) {
                 player.closeInventory();
-                Inventory profilInventory = Bukkit.createInventory(player, 9*5, "§7» §aProfil §7«");
+                Inventory profilInventory = Bukkit.createInventory(player, 9*4, "§7» §aProfil §7«");
 
-                for (int i = 0; i < 45; i++) {
+                for (int i = 0; i < 35; i++) {
                     profilInventory.setItem(i, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
                 }
 
-                profilInventory.setItem(31, new ItemBuilder(Material.GOLDEN_BOOTS).setName("§7» §6Spuren §7«").build());
-                profilInventory.setItem(28, new ItemBuilder(Material.CHEST).setName("§7» §6Gadgets §7«").build());
-                profilInventory.setItem(34, new ItemBuilder(Material.ENDER_CHEST).setName("§7» §6Shop §7«").build());
-                profilInventory.setItem(13, new ItemBuilder(Material.REDSTONE).setName("§7» §6Settings §7«").build());
+                profilInventory.setItem(10, new ItemBuilder(Material.GOLDEN_BOOTS).setFlag(ItemFlag.HIDE_ATTRIBUTES).setName("§7» §6Spuren §7«").build());
+                profilInventory.setItem(13, new ItemBuilder(Material.CHEST).setName("§7» §6Gadgets §7«").build());
+                profilInventory.setItem(16, new ItemBuilder(Material.ENDER_CHEST).setName("§7» §6Shop §7«").build());
+                profilInventory.setItem(35, new ItemBuilder(Material.REDSTONE).setEnchantment(Enchantment.CHANNELING, 0).setFlag(ItemFlag.HIDE_ENCHANTS).setName("§7» §6Settings §7«").build());
 
                 player.openInventory(profilInventory);
                 player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 1f);
