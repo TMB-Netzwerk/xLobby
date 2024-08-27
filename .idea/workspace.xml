@@ -5,36 +5,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c959c503-12f7-4409-9af5-5b452353ff11" name="Changes" comment="xLobby first upload (UPDATE 1.5)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/shop/ShopEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/shop/ShopGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/PlayersAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/commands/EventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/commands/EventCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/commands/SQLAdminCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/commands/SQLAdminCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/DefaultChangesEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/DefaultChangesEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/gadget/EnderperleEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/gadget/EnderperleEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/JoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/JoinEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/CalendarEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/CalendarEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/GadgetEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/GadgetEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/LotteryEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/LotteryEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/ProfilEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/ProfilEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/SettingsEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/SettingsEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/ShopEvent.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/TrailEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/main/TrailEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/shop/ShopEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/shop/ShopEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/events/shop/ShopGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/events/shop/ShopGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/BytesAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/CoinAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/PlayersAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/PlayersAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/RedeemAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/RedeemAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/RewardAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/TicketAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/mysql/TimeAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/BoardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/BoardBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/CooldownBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/CooldownBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/LotteryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/utils/LotteryBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/xenodev/xLobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/xenodev/xLobby.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/DefaultChangesEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/DefaultChangesEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/gadget/EnderperleEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/gadget/EnderperleEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/commands/EventCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/commands/EventCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/commands/SQLAdminCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/commands/SQLAdminCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/JoinEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/JoinEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/CalendarEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/CalendarEvent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/GadgetEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/GadgetEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/LotteryEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/LotteryEvent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/ProfilEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/ProfilEvent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/SettingsEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/SettingsEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/ShopEvent.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/TrailEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/main/TrailEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/shop/ShopEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/shop/ShopEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/events/shop/ShopGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/events/shop/ShopGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/mysql/BytesAPI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/mysql/CoinAPI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/mysql/PlayersAPI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/mysql/PlayersAPI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/mysql/RedeemAPI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/mysql/RedeemAPI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/mysql/RewardAPI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/mysql/TicketAPI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/mysql/TimeAPI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/BoardBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/CooldownBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/utils/LotteryBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/utils/LotteryBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/de/xenodev/xLobby.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/xenodev/xLobby.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-xLobby-2.3-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-xLobby-2.3-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xLobby-2.3-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/xLobby-2.3-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-xLobby-2.4-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-xLobby-2.4-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xLobby-2.4-SNAPSHOT-shaded.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/xLobby-2.4-SNAPSHOT-shaded.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xLobby-2.4-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/xLobby-2.4-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,23 +95,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Maven.xLobby [package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rodne/IdeaProjects/TeamMegaByte/xLobby&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;settings.editor.splitter.proportion&quot;: &quot;0.3058104&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Maven.xLobby [package].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Rodne/IdeaProjects/TeamMegaByte/xLobbyGames",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "settings.editor.splitter.proportion": "0.3058104"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Rodne\IdeaProjects\TeamMegaByte\xLobby\src\main\java\de\xenodev\utils\snow" />

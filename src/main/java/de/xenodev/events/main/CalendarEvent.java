@@ -22,137 +22,145 @@ import java.util.Random;
 public class CalendarEvent implements Listener {
 
     @EventHandler
-    public void handleProfilItemInteract(PlayerInteractEvent event){
-        if(event.getItem() == null) return;
-        if(event.getItem().getType().equals(Material.PLAYER_HEAD)) {
-            if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cAdventskalender §7«")) {
-                Player player = event.getPlayer();
+    public void handleProfilItemInteract(InventoryClickEvent event){
+        Player player = (Player) event.getWhoClicked();
+        if (event.getView().getTitle().equalsIgnoreCase("§7» §aProfil §7«")) {
+            if (event.getCurrentItem().getType().equals(Material.PLAYER_HEAD)) {
+                if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Adventskalender")) {
 
-                LocalDateTime now = LocalDateTime.now();
-                DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
-
-                Integer days = 0;
-
-                Inventory calendarInventory = Bukkit.createInventory(player, 9*6, "§7» §cAdventskalender §7«");
-
-                for (int i = 0; i < 54; i++) {
-                    calendarInventory.setItem(i, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
-                }
-
-                for(int i = 12; i < 15; i++){
-                    days++;
-                    String stringDay = "";
-                    if(days < 10){
-                        stringDay = "0" + days;
-                    }else{
-                        stringDay = "" + days;
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+                    DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+                    if(!month.format(now).equals("12")){
+                        player.closeInventory();
+                        player.sendMessage(xLobby.getPrefix() + "§cDer Adventskalender ist erst wieder im Dezember aktiviert");
+                        player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_AMBIENT, 100, 1f);
+                        return;
                     }
-                    if(day.format(now).equals(stringDay)){
-                        if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
-                        }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+
+                    Integer days = 0;
+
+                    Inventory calendarInventory = Bukkit.createInventory(player, 9 * 6, "§7» §cAdventskalender §7«");
+
+                    for (int i = 0; i < 54; i++) {
+                        calendarInventory.setItem(i, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
+                    }
+
+                    for (int i = 12; i < 15; i++) {
+                        days++;
+                        String stringDay = "";
+                        if (days < 10) {
+                            stringDay = "0" + days;
+                        } else {
+                            stringDay = "" + days;
                         }
-                    }else {
-                        if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            if (Integer.valueOf(day.format(now)) > days) {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                        if (day.format(now).equals(stringDay)) {
+                            if (CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
                             } else {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                             }
-                        }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
-                        }
-                    }
-                }
-
-                for(int i = 19; i < 26; i++){
-                    days++;
-                    String stringDay = "";
-                    if(days < 10){
-                        stringDay = "0" + days;
-                    }else{
-                        stringDay = "" + days;
-                    }
-                    if(day.format(now).equals(stringDay)){
-                        if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
-                        }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
-                        }
-                    }else {
-                        if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            if (Integer.valueOf(day.format(now)) > days) {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                        } else {
+                            if (CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
+                                if (Integer.valueOf(day.format(now)) > days) {
+                                    calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                                } else {
+                                    calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                }
                             } else {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                             }
-                        }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }
-                }
 
-                for(int i = 28; i < 35; i++){
-                    days++;
-                    String stringDay = "";
-                    if(days < 10){
-                        stringDay = "0" + days;
-                    }else{
-                        stringDay = "" + days;
-                    }
-                    if(day.format(now).equals(stringDay)){
-                        if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
-                        }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                    for (int i = 19; i < 26; i++) {
+                        days++;
+                        String stringDay = "";
+                        if (days < 10) {
+                            stringDay = "0" + days;
+                        } else {
+                            stringDay = "" + days;
                         }
-                    }else {
-                        if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            if (Integer.valueOf(day.format(now)) > days) {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                        if (day.format(now).equals(stringDay)) {
+                            if (CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
                             } else {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                             }
-                        }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
-                        }
-                    }
-                }
-
-                for(int i = 37; i < 44; i++){
-                    days++;
-                    String stringDay = "";
-                    if(days < 10){
-                        stringDay = "0" + days;
-                    }else{
-                        stringDay = "" + days;
-                    }
-                    if(day.format(now).equals(stringDay)){
-                        if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
-                        }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
-                        }
-                    }else {
-                        if(CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
-                            if (Integer.valueOf(day.format(now)) > days) {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                        } else {
+                            if (CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
+                                if (Integer.valueOf(day.format(now)) > days) {
+                                    calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                                } else {
+                                    calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                }
                             } else {
-                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                             }
-                        }else{
-                            calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
                         }
                     }
+
+                    for (int i = 28; i < 35; i++) {
+                        days++;
+                        String stringDay = "";
+                        if (days < 10) {
+                            stringDay = "0" + days;
+                        } else {
+                            stringDay = "" + days;
+                        }
+                        if (day.format(now).equals(stringDay)) {
+                            if (CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
+                            } else {
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            }
+                        } else {
+                            if (CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
+                                if (Integer.valueOf(day.format(now)) > days) {
+                                    calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                                } else {
+                                    calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                }
+                            } else {
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            }
+                        }
+                    }
+
+                    for (int i = 37; i < 44; i++) {
+                        days++;
+                        String stringDay = "";
+                        if (days < 10) {
+                            stringDay = "0" + days;
+                        } else {
+                            stringDay = "" + days;
+                        }
+                        if (day.format(now).equals(stringDay)) {
+                            if (CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§aTürchen " + days).build());
+                            } else {
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            }
+                        } else {
+                            if (CalendarAPI.getDay(player.getUniqueId(), "day" + days).equals("false")) {
+                                if (Integer.valueOf(day.format(now)) > days) {
+                                    calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("143e0f73d8f447a573f33226fe4f9683b64dda42e7142c130b5b33c29f160183").setName("§cTürchen " + days).build());
+                                } else {
+                                    calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("69b564a6f73283112a70b9ce7e15753eb86bd12e7659ec4d0dc0855c6bea76e").setName("§6Türchen " + days).build());
+                                }
+                            } else {
+                                calendarInventory.setItem(i, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("bfe732b3ecb2fabc038fb06db8c53a7ffb030db92544e1b2256f01cb2eb822b7").setName("§9Türchen " + days).build());
+                            }
+                        }
+                    }
+
+                    calendarInventory.setItem(48, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
+                    calendarInventory.setItem(49, new ItemBuilder(Material.LEATHER_BOOTS).setColor(Color.WHITE).setName("§6Christmas Trail").setLore("§5§oWeihnachtsquest:", "§8- §7Hole alle 24 Geschenke ab").setFlag(ItemFlag.HIDE_DYE).build());
+                    calendarInventory.setItem(50, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
+
+                    player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 1f);
+                    player.openInventory(calendarInventory);
                 }
-
-                calendarInventory.setItem(48, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
-                calendarInventory.setItem(49, new ItemBuilder(Material.LEATHER_BOOTS).setColor(Color.WHITE).setName("§6Christmas Trail").setLore("§5§oWeihnachtsquest:", "§8- §7Hole alle 24 Geschenke ab").setFlag(ItemFlag.HIDE_DYE).build());
-                calendarInventory.setItem(50, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).build());
-
-                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 1f);
-                player.openInventory(calendarInventory);
             }
         }
     }
@@ -162,13 +170,6 @@ public class CalendarEvent implements Listener {
         Player player = (Player) event.getWhoClicked();
         if (event.getView().getTitle().equalsIgnoreCase("§7» §cAdventskalender §7«")) {
             event.setCancelled(true);
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
-            if(!month.format(now).equals("12")){
-                player.sendMessage(xLobby.getPrefix() + "§cDer Adventskalender ist erst wieder im Dezember aktiviert");
-                player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_AMBIENT, 100, 1f);
-                return;
-            }
             if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§a")){
                 String number = event.getCurrentItem().getItemMeta().getDisplayName().replace("§aTürchen ", "");
                 player.sendMessage(xLobby.getPrefix() + "§aDu hast Türchen " + number + " geöffnet");
@@ -179,17 +180,17 @@ public class CalendarEvent implements Listener {
                 switch (los){
                     case 1:
                         int randomCoins = new Random().nextInt(5000, 50001);
-                        CoinAPI.addCoins(player.getUniqueId(), randomCoins);
+                        PlayersAPI.addCoins(player.getUniqueId(), randomCoins);
                         player.sendMessage(xLobby.getPrefix() + "§7Du hast §6" + randomCoins + " §7Coins aus dem Geschenk bekommen");
                         break;
                     case 2:
                         int randomBytes = new Random().nextInt(3, 16);
-                        BytesAPI.addBytes(player.getUniqueId(), randomBytes);
+                        PlayersAPI.addBytes(player.getUniqueId(), randomBytes);
                         player.sendMessage(xLobby.getPrefix() + "§7Du hast §6" + randomBytes + " §7Bytes aus dem Geschenk bekommen");
                         break;
                     case 3:
                         int randomTicket = new Random().nextInt(5, 31);
-                        TicketAPI.addTickets(player.getUniqueId(), randomTicket);
+                        PlayersAPI.addTickets(player.getUniqueId(), randomTicket);
                         player.sendMessage(xLobby.getPrefix() + "§7Du hast §6" + randomTicket + " §7Tickets aus dem Geschenk bekommen");
                         break;
                 }
@@ -218,9 +219,9 @@ public class CalendarEvent implements Listener {
                         CalendarAPI.getDay(player.getUniqueId(), "day23").equals("true") &&
                         CalendarAPI.getDay(player.getUniqueId(), "day24").equals("true")){
                     BuyAPI.setBuy(player.getUniqueId(), "christmastrail", "true");
-                    CoinAPI.addCoins(player.getUniqueId(), 500000);
-                    BytesAPI.addBytes(player.getUniqueId(), 25);
-                    TicketAPI.addTickets(player.getUniqueId(), 50);
+                    PlayersAPI.addCoins(player.getUniqueId(), 500000);
+                    PlayersAPI.addBytes(player.getUniqueId(), 25);
+                    PlayersAPI.addTickets(player.getUniqueId(), 50);
                     player.sendMessage(xLobby.getPrefix() + "§8-----------------------------------------------");
                     player.sendMessage(xLobby.getPrefix() + "§7Du hast alle §e24 Türchen §7geöffnet!");
                     player.sendMessage(xLobby.getPrefix() + "§c§lFolgende Belohnungen erhältst du:");

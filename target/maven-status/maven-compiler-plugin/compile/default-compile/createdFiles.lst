@@ -32,12 +32,10 @@ de\xenodev\utils\RedeemBuilder.class
 de\xenodev\events\gadget\EnderperleEvent.class
 de\xenodev\events\main\LotteryEvent.class
 de\xenodev\events\gadget\special\EggBombEvent.class
-de\xenodev\mysql\CoinAPI.class
 de\xenodev\utils\snow\FlakesHandler.class
 de\xenodev\commands\LocationCommand.class
 de\xenodev\xLobby.class
 de\xenodev\mysql\LotteryAPI.class
-de\xenodev\mysql\RewardAPI.class
 de\xenodev\events\main\TrailEvent.class
 de\xenodev\commands\EventCommand.class
 de\xenodev\utils\UUIDFetcher.class
@@ -45,10 +43,7 @@ de\xenodev\events\gadget\special\SwitchBow.class
 de\xenodev\mysql\RedeemAPI.class
 de\xenodev\utils\snow\ConfigHandler.class
 de\xenodev\events\main\ProfilEvent.class
-de\xenodev\mysql\TimeAPI.class
 de\xenodev\events\JoinEvent.class
-de\xenodev\mysql\BytesAPI.class
 de\xenodev\events\main\CalendarEvent.class
 de\xenodev\mysql\BuyAPI.class
 de\xenodev\utils\BoardBuilder$1.class
-de\xenodev\mysql\TicketAPI.class

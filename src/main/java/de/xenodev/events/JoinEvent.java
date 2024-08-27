@@ -63,22 +63,21 @@ public class JoinEvent implements Listener {
         player.setExp(0);
         player.setLevel(0);
 
-        BytesAPI.createPlayer(player.getUniqueId());
-        CoinAPI.createPlayer(player.getUniqueId());
-        TimeAPI.createPlayer(player.getUniqueId());
         SettingAPI.createPlayer(player.getUniqueId());
         BuyAPI.createPlayer(player.getUniqueId());
-        TicketAPI.createPlayer(player.getUniqueId());
-        RewardAPI.createPlayer(player.getUniqueId());
         CalendarAPI.createPlayer(player.getUniqueId());
+        PlayersAPI.createPlayer(player.getUniqueId());
 
         long current = System.currentTimeMillis();
-        long time = RewardAPI.getTime(player.getUniqueId());
+        long time = PlayersAPI.getRewardTime(player.getUniqueId());
         long countdown = (24*60*60*1000)*2;
 
         if(Math.abs(current - time) >= countdown){
-            RewardAPI.setStreak(player.getUniqueId(), 0);
+            PlayersAPI.setRewardStreak(player.getUniqueId(), 0);
         }
+
+        PlayersAPI.addJoins(player.getUniqueId());
+        PlayersAPI.setName(player.getUniqueId());
 
         player.getInventory().clear();
 
@@ -103,9 +102,6 @@ public class JoinEvent implements Listener {
             player.getInventory().setItem(4, new ItemBuilder(Material.COMPASS).setName("§7» §6Navigator §7«").build());
         }
 
-        if(EventAPI.getEvent().equalsIgnoreCase("Christmas")){
-            player.getInventory().setItem(7, new ItemBuilder(Material.PLAYER_HEAD).setHeadByURL("45368f5635ff6c3407f0f356c5b6e0947bcd5e38490c9aa8b8b582a4f21ae3cb").setName("§7» §cAdventskalender §7«").build());
-        }
         player.getInventory().setItem(8, new ItemBuilder(Material.PLAYER_HEAD).setHeadByName(player.getName()).setName("§7» §aProfil §7«").build());
     }
 

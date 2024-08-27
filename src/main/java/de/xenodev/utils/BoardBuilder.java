@@ -1,13 +1,7 @@
 package de.xenodev.utils;
 
-import de.xenodev.mysql.BytesAPI;
-import de.xenodev.mysql.CoinAPI;
-import de.xenodev.mysql.TimeAPI;
+import de.xenodev.mysql.PlayersAPI;
 import de.xenodev.xLobby;
-import eu.cloudnetservice.driver.inject.InjectionLayer;
-import eu.cloudnetservice.driver.permission.PermissionGroup;
-import eu.cloudnetservice.driver.permission.PermissionManagement;
-import eu.cloudnetservice.driver.permission.PermissionUser;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -32,13 +26,13 @@ public class BoardBuilder {
 
         objective.getScore("§5§o").setScore(12);
         objective.getScore("§7» §fDeine Zeit").setScore(11);
-        objective.getScore(updateTeam(scoreboard, "time", "§2§l" + TimeAPI.changeTime(player.getUniqueId()), "", ChatColor.GREEN)).setScore(10);
+        objective.getScore(updateTeam(scoreboard, "time", "§2§l" + PlayersAPI.formateTime(player.getUniqueId()), "", ChatColor.GREEN)).setScore(10);
         objective.getScore("§9§o").setScore(9);
         objective.getScore("§7» §fDeine Bytes").setScore(8);
-        objective.getScore(updateTeam(scoreboard, "bytes", "§6§l" + BytesAPI.getBytes(player.getUniqueId()), "", ChatColor.GOLD)).setScore(7);
+        objective.getScore(updateTeam(scoreboard, "bytes", "§6§l" + PlayersAPI.getBytes(player.getUniqueId()), "", ChatColor.GOLD)).setScore(7);
         objective.getScore("§6§o").setScore(6);
         objective.getScore("§7» §fDeine Coins").setScore(5);
-        objective.getScore(updateTeam(scoreboard, "coins", "§e§l" + CoinAPI.getCoins(player.getUniqueId()), "", ChatColor.YELLOW)).setScore(4);
+        objective.getScore(updateTeam(scoreboard, "coins", "§e§l" + PlayersAPI.getCoins(player.getUniqueId()), "", ChatColor.YELLOW)).setScore(4);
         objective.getScore("§7§o").setScore(3);
         objective.getScore("§7» §fUnsere Website").setScore(2);
         objective.getScore("§d§lclan-tmb.de").setScore(1);
@@ -53,9 +47,9 @@ public class BoardBuilder {
                     Scoreboard scoreboard = players.getScoreboard();
                     Objective objective = scoreboard.getObjective("main");
 
-                    objective.getScore(updateTeam(scoreboard, "time", "§2§l" + TimeAPI.changeTime(players.getUniqueId()), "", ChatColor.GREEN)).setScore(10);
-                    objective.getScore(updateTeam(scoreboard, "bytes", "§6§l" + BytesAPI.getBytes(players.getUniqueId()), "", ChatColor.GOLD)).setScore(7);
-                    objective.getScore(updateTeam(scoreboard, "coins", "§e§l" + CoinAPI.getCoins(players.getUniqueId()), "", ChatColor.YELLOW)).setScore(4);
+                    objective.getScore(updateTeam(scoreboard, "time", "§2§l" + PlayersAPI.formateTime(players.getUniqueId()), "", ChatColor.GREEN)).setScore(10);
+                    objective.getScore(updateTeam(scoreboard, "bytes", "§6§l" + PlayersAPI.getBytes(players.getUniqueId()), "", ChatColor.GOLD)).setScore(7);
+                    objective.getScore(updateTeam(scoreboard, "coins", "§e§l" + PlayersAPI.getCoins(players.getUniqueId()), "", ChatColor.YELLOW)).setScore(4);
 
                 }
             }

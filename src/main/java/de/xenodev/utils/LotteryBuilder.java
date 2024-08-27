@@ -1,8 +1,7 @@
 package de.xenodev.utils;
 
-import de.xenodev.mysql.CoinAPI;
 import de.xenodev.mysql.LotteryAPI;
-import de.xenodev.mysql.TicketAPI;
+import de.xenodev.mysql.PlayersAPI;
 import de.xenodev.xLobby;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -14,7 +13,6 @@ import org.bukkit.inventory.ItemFlag;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 public class LotteryBuilder {
@@ -45,8 +43,8 @@ public class LotteryBuilder {
 
     public static void openNewPage(Player player){
         Inventory inventory = Bukkit.createInventory(player, 9*6, "§8» §6Lottery Page §c" + getCurrentPage(player) + " §8«");
-        int totalCoins = CoinAPI.getCoins(player.getUniqueId());
-        int totalTickets = TicketAPI.getTickets(player.getUniqueId());
+        int totalCoins = PlayersAPI.getCoins(player.getUniqueId());
+        int totalTickets = PlayersAPI.getTickets(player.getUniqueId());
         int maxTicket = getCurrentPage(player) * 35;
         int minTicket = (getCurrentPage(player) - 1) * 35;
 
@@ -90,7 +88,7 @@ public class LotteryBuilder {
     public static void closeInOpen(Player player){
         if(CooldownBuilder.lotteryCooldown.contains(player)){
             CooldownBuilder.lotteryCooldown.remove(player);
-            TicketAPI.addTickets(player.getUniqueId(), 1);
+            PlayersAPI.addTickets(player.getUniqueId(), 1);
             LotteryBuilder.getCurrentPageMap().remove(player);
             getCurrentChestMap().remove(player);
             getCurrentCoinsMap().remove(player);
@@ -107,7 +105,7 @@ public class LotteryBuilder {
             }
         }
         CooldownBuilder.lotteryCooldown.remove(player);
-        CoinAPI.addCoins(player.getUniqueId(), getCurrentCoins(player));
+        PlayersAPI.addCoins(player.getUniqueId(), getCurrentCoins(player));
         player.sendMessage(xLobby.getPrefix() + "§7Du hast §e§l" + getCurrentCoins(player) + " §7Coins erhalten");
         LotteryAPI.addUses("open", 1);
         getCurrentCoinsMap().remove(player);
@@ -116,7 +114,7 @@ public class LotteryBuilder {
 
     public static void loadRandomLottery(Player player){
         CooldownBuilder.lotteryCooldown.add(player);
-        TicketAPI.removeTickets(player.getUniqueId(), 1);
+        PlayersAPI.removeTickets(player.getUniqueId(), 1);
         getCurrentChestMap().put(player, 0);
         getCurrentCoinsMap().put(player, 0);
         Inventory inventory = Bukkit.createInventory(player, 9*3, "§8» §9Lottery Opening §8«");

@@ -54,13 +54,13 @@ public class RedeemAPI {
                 preparedStatement.close();
                 player.sendMessage(xLobby.getPrefix() + "§7Du hast den Code eingelöst!");
                 if(type.equalsIgnoreCase("bytes")){
-                    BytesAPI.addBytes(player.getUniqueId(), amount);
+                    PlayersAPI.addBytes(player.getUniqueId(), amount);
                     player.sendMessage(xLobby.getPrefix() + "§6" + amount + " §7Bytes erhalten");
                 }else if(type.equalsIgnoreCase("coins")){
-                    CoinAPI.addCoins(player.getUniqueId(), amount);
+                    PlayersAPI.addCoins(player.getUniqueId(), amount);
                     player.sendMessage(xLobby.getPrefix() + "§6" + amount + " §7Coins erhalten");
                 }else if(type.equalsIgnoreCase("tickets")){
-                    TicketAPI.addTickets(player.getUniqueId(), amount);
+                    PlayersAPI.addTickets(player.getUniqueId(), amount);
                     player.sendMessage(xLobby.getPrefix() + "§6" + amount + " §7Tickets erhalten");
                 }
                 PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM Redeem WHERE CODE = '" + code + "'");

@@ -1,7 +1,6 @@
 package de.xenodev.events.shop;
 
-import de.xenodev.mysql.BytesAPI;
-import de.xenodev.mysql.CoinAPI;
+import de.xenodev.events.main.ProfilEvent;
 import de.xenodev.mysql.PlayersAPI;
 import de.xenodev.utils.ItemBuilder;
 import de.xenodev.xLobby;
@@ -60,20 +59,7 @@ public class ShopEvent implements Listener {
             event.setCancelled(true);
             if (event.getCurrentItem() == null) return;
             if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Zurück §7«")) {
-                player.closeInventory();
-                Inventory profilInventory = Bukkit.createInventory(player, 9 * 4, "§7» §aProfil §7«");
-
-                for (int i = 0; i < 35; i++) {
-                    profilInventory.setItem(i, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
-                }
-
-                profilInventory.setItem(10, new ItemBuilder(Material.GOLDEN_BOOTS).setFlag(ItemFlag.HIDE_ATTRIBUTES).setName("§7» §6Spuren §7«").build());
-                profilInventory.setItem(13, new ItemBuilder(Material.CHEST).setName("§7» §6Gadgets §7«").build());
-                profilInventory.setItem(16, new ItemBuilder(Material.ENDER_CHEST).setName("§7» §6Shop §7«").build());
-                profilInventory.setItem(35, new ItemBuilder(Material.REDSTONE).setEnchantment(Enchantment.CHANNELING, 0).setFlag(ItemFlag.HIDE_ENCHANTS).setName("§7» §6Settings §7«").build());
-
-                player.openInventory(profilInventory);
-                player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 1f);
+                ProfilEvent.open(player);
             }
         }
     }
@@ -250,9 +236,9 @@ public class ShopEvent implements Listener {
             try{
                 bytes = Integer.valueOf(event.getMessage());
                 if(bytes >= 1){
-                    if(CoinAPI.getCoins(player.getUniqueId()) >= bytes * 5000){
-                        CoinAPI.removeCoins(player.getUniqueId(), bytes * 5000);
-                        BytesAPI.addBytes(player.getUniqueId(), bytes);
+                    if(PlayersAPI.getCoins(player.getUniqueId()) >= bytes * 5000){
+                        PlayersAPI.removeCoins(player.getUniqueId(), bytes * 5000);
+                        PlayersAPI.addBytes(player.getUniqueId(), bytes);
                         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 100f);
                         player.sendMessage(xLobby.getPrefix() + "§7Du hast §c" + bytes + " §7Bytes im Wert von §6" + (bytes * 5000) + " §7Coins gekauft");
                         checkBuyBytes.remove(player);

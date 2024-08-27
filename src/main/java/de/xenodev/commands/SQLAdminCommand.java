@@ -60,48 +60,48 @@ public class SQLAdminCommand implements CommandExecutor, TabCompleter, Listener 
 
                 if(args[1].equalsIgnoreCase("set")){
                     if(args[2].equalsIgnoreCase("bytes")){
-                        Integer oldBytes = BytesAPI.getBytes(offlinePlayer.getUniqueId());
-                        BytesAPI.setBytes(offlinePlayer.getUniqueId(), newAmount);
+                        Integer oldBytes = PlayersAPI.getBytes(offlinePlayer.getUniqueId());
+                        PlayersAPI.setBytes(offlinePlayer.getUniqueId(), newAmount);
                         player.sendMessage(xLobby.getPrefix() + "§a" + offlinePlayer.getName() + " §7Bytes geändert von §e" + oldBytes + " §7zu §6" + newAmount);
                     }else if(args[2].equalsIgnoreCase("coins")){
-                        Integer oldCoins = CoinAPI.getCoins(offlinePlayer.getUniqueId());
-                        CoinAPI.setCoins(offlinePlayer.getUniqueId(), newAmount);
+                        Integer oldCoins = PlayersAPI.getCoins(offlinePlayer.getUniqueId());
+                        PlayersAPI.setCoins(offlinePlayer.getUniqueId(), newAmount);
                         player.sendMessage(xLobby.getPrefix() + "§a" + offlinePlayer.getName() + " §7Coins geändert von §e" + oldCoins + " §7zu §6" + newAmount);
                     }else if(args[2].equalsIgnoreCase("tickets")){
-                        Integer oldTickets = TicketAPI.getTickets(offlinePlayer.getUniqueId());
-                        TicketAPI.setTickets(offlinePlayer.getUniqueId(), newAmount);
+                        Integer oldTickets = PlayersAPI.getTickets(offlinePlayer.getUniqueId());
+                        PlayersAPI.setTickets(offlinePlayer.getUniqueId(), newAmount);
                         player.sendMessage(xLobby.getPrefix() + "§a" + offlinePlayer.getName() + " §7Coins geändert von §e" + oldTickets + " §7zu §6" + newAmount);
                     }else{
                         player.sendMessage("§cDiesen Datatypen gibt es nicht! §8[ " + args[2] + " §8]");
                     }
                 }else if(args[1].equalsIgnoreCase("remove")){
                     if(args[2].equalsIgnoreCase("bytes")){
-                        Integer oldBytes = BytesAPI.getBytes(offlinePlayer.getUniqueId());
-                        BytesAPI.removeBytes(offlinePlayer.getUniqueId(), newAmount);
+                        Integer oldBytes = PlayersAPI.getBytes(offlinePlayer.getUniqueId());
+                        PlayersAPI.removeBytes(offlinePlayer.getUniqueId(), newAmount);
                         player.sendMessage(xLobby.getPrefix() + "§a" + offlinePlayer.getName() + " §7Bytes geändert von §e" + oldBytes + " §7zu §6" + (oldBytes - newAmount));
                     }else if(args[2].equalsIgnoreCase("coins")){
-                        Integer oldCoins = CoinAPI.getCoins(offlinePlayer.getUniqueId());
-                        CoinAPI.removeCoins(offlinePlayer.getUniqueId(), newAmount);
+                        Integer oldCoins = PlayersAPI.getCoins(offlinePlayer.getUniqueId());
+                        PlayersAPI.removeCoins(offlinePlayer.getUniqueId(), newAmount);
                         player.sendMessage(xLobby.getPrefix() + "§a" + offlinePlayer.getName() + " §7Coins geändert von §e" + oldCoins + " §7zu §6" + (oldCoins - newAmount));
                     }else if(args[2].equalsIgnoreCase("tickets")){
-                        Integer oldTickets = TicketAPI.getTickets(offlinePlayer.getUniqueId());
-                        TicketAPI.removeTickets(offlinePlayer.getUniqueId(), newAmount);
+                        Integer oldTickets = PlayersAPI.getTickets(offlinePlayer.getUniqueId());
+                        PlayersAPI.removeTickets(offlinePlayer.getUniqueId(), newAmount);
                         player.sendMessage(xLobby.getPrefix() + "§a" + offlinePlayer.getName() + " §7Coins geändert von §e" + oldTickets + " §7zu §6" + (oldTickets - newAmount));
                     }else{
                         player.sendMessage("§cDiesen Datatypen gibt es nicht! §8[ " + args[2] + " §8]");
                     }
                 }else if(args[1].equalsIgnoreCase("add")){
                     if(args[2].equalsIgnoreCase("bytes")){
-                        Integer oldBytes = BytesAPI.getBytes(offlinePlayer.getUniqueId());
-                        BytesAPI.addBytes(offlinePlayer.getUniqueId(), newAmount);
+                        Integer oldBytes = PlayersAPI.getBytes(offlinePlayer.getUniqueId());
+                        PlayersAPI.addBytes(offlinePlayer.getUniqueId(), newAmount);
                         player.sendMessage(xLobby.getPrefix() + "§a" + offlinePlayer.getName() + " §7Bytes geändert von §e" + oldBytes + " §7zu §6" + (oldBytes + newAmount));
                     }else if(args[2].equalsIgnoreCase("coins")){
-                        Integer oldCoins = CoinAPI.getCoins(offlinePlayer.getUniqueId());
-                        CoinAPI.addCoins(offlinePlayer.getUniqueId(), newAmount);
+                        Integer oldCoins = PlayersAPI.getCoins(offlinePlayer.getUniqueId());
+                        PlayersAPI.addCoins(offlinePlayer.getUniqueId(), newAmount);
                         player.sendMessage(xLobby.getPrefix() + "§a" + offlinePlayer.getName() + " §7Coins geändert von §e" + oldCoins + " §7zu §6" + (oldCoins + newAmount));
                     }else if(args[2].equalsIgnoreCase("tickets")){
-                        Integer oldTickets = TicketAPI.getTickets(offlinePlayer.getUniqueId());
-                        TicketAPI.addTickets(offlinePlayer.getUniqueId(), newAmount);
+                        Integer oldTickets = PlayersAPI.getTickets(offlinePlayer.getUniqueId());
+                        PlayersAPI.addTickets(offlinePlayer.getUniqueId(), newAmount);
                         player.sendMessage(xLobby.getPrefix() + "§a" + offlinePlayer.getName() + " §7Coins geändert von §e" + oldTickets + " §7zu §6" + (oldTickets + newAmount));
                     }else{
                         player.sendMessage("§cDiesen Datatypen gibt es nicht! §8[ " + args[2] + " §8]");

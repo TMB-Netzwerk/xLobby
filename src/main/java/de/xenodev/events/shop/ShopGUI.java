@@ -1,8 +1,7 @@
 package de.xenodev.events.shop;
 
 import de.xenodev.mysql.BuyAPI;
-import de.xenodev.mysql.BytesAPI;
-import de.xenodev.mysql.CoinAPI;
+import de.xenodev.mysql.PlayersAPI;
 import de.xenodev.utils.ItemBuilder;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -44,7 +43,7 @@ public class ShopGUI {
         shopInventory.setItem(27, new ItemBuilder(Material.BEACON).setName("§7» §6Anderes §7«").build());
         shopInventory.setItem(28, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
 
-        shopInventory.setItem(45, new ItemBuilder(Material.NETHER_STAR).setName("§dShop").setLore("§7» Coins: §b" + CoinAPI.getCoins(player.getUniqueId()), "§7» Bytes: §b" + BytesAPI.getBytes(player.getUniqueId())).build());
+        shopInventory.setItem(45, new ItemBuilder(Material.NETHER_STAR).setName("§dShop").setLore("§7» Coins: §b" + PlayersAPI.getCoins(player.getUniqueId()), "§7» Bytes: §b" + PlayersAPI.getBytes(player.getUniqueId())).build());
         shopInventory.setItem(53, new ItemBuilder(Material.ARROW).setName("§7» §6Zurück §7«").build());
 
         if(page.equalsIgnoreCase("gadgets")){
@@ -100,8 +99,8 @@ public class ShopGUI {
     }
 
     public static boolean checkBuyColor(Player player, int amount){
-        if(CoinAPI.getCoins(player.getUniqueId()) >= amount) {
-            CoinAPI.removeCoins(player.getUniqueId(), amount);
+        if(PlayersAPI.getCoins(player.getUniqueId()) >= amount) {
+            PlayersAPI.removeCoins(player.getUniqueId(), amount);
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 100f);
             return true;
         }else{
@@ -111,8 +110,8 @@ public class ShopGUI {
     }
 
     public static void checkBuyGadget(Player player, int amount, String gadget){
-        if(BytesAPI.getBytes(player.getUniqueId()) >= amount){
-            BytesAPI.removeBytes(player.getUniqueId(), amount);
+        if(PlayersAPI.getBytes(player.getUniqueId()) >= amount){
+            PlayersAPI.removeBytes(player.getUniqueId(), amount);
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 100f);
             BuyAPI.setBuy(player.getUniqueId(), gadget, "true");
         }else {
@@ -121,8 +120,8 @@ public class ShopGUI {
     }
 
     public static void checkBuyTrail(Player player, int amount, String trail){
-        if(BytesAPI.getBytes(player.getUniqueId()) >= amount){
-            BytesAPI.removeBytes(player.getUniqueId(), amount);
+        if(PlayersAPI.getBytes(player.getUniqueId()) >= amount){
+            PlayersAPI.removeBytes(player.getUniqueId(), amount);
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 100f);
             BuyAPI.setBuy(player.getUniqueId(), trail, "true");
         }else {

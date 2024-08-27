@@ -1,8 +1,7 @@
 package de.xenodev.events.main;
 
-import de.xenodev.mysql.CoinAPI;
 import de.xenodev.mysql.LotteryAPI;
-import de.xenodev.mysql.TicketAPI;
+import de.xenodev.mysql.PlayersAPI;
 import de.xenodev.utils.ItemBuilder;
 import de.xenodev.utils.LotteryBuilder;
 import de.xenodev.xLobby;
@@ -73,9 +72,9 @@ public class LotteryEvent implements Listener {
                     LotteryBuilder.openNewPage(player);
                     player.playSound(player.getLocation(), Sound.BLOCK_COMPARATOR_CLICK, 100, 100f);
                 }else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Buy a Ticket")){
-                    if(CoinAPI.getCoins(player.getUniqueId()) >= LotteryBuilder.getTicketCost(player)){
-                        CoinAPI.removeCoins(player.getUniqueId(), LotteryBuilder.getTicketCost(player));
-                        TicketAPI.addTickets(player.getUniqueId(), 1);
+                    if(PlayersAPI.getCoins(player.getUniqueId()) >= LotteryBuilder.getTicketCost(player)){
+                        PlayersAPI.removeCoins(player.getUniqueId(), LotteryBuilder.getTicketCost(player));
+                        PlayersAPI.addTickets(player.getUniqueId(), 1);
                         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 100, 100f);
                         LotteryBuilder.openNewPage(player);
                     }else {
